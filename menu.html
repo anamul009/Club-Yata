@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUB YATA | Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@400;700&family=Noto+Serif+JP:wght@200;300;400;500&family=Great+Vibes&display=swap');
+
+        body {
+            background-color: #03080b;
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+        }
+
+        .jp-font {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .cursive-title {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .golden-text {
+            color: #d4af37;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(3, 8, 11, 0.95);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10vw;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('img/menu-img.jpg');
+            background-size: cover;
+            background-position: center right;
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes scrollLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .scroll-line-anim {
+            animation: scrollLine 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+
+        @keyframes scrollText {
+            0%, 100% {
+                opacity: 0.6;
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(212, 175, 55, 0.8);
+                transform: translateY(8px);
+            }
+        }
+
+        .scroll-text-anim {
+            animation: scrollText 2s ease-in-out infinite;
+        }
+
+        @media (min-width: 768px) {
+            body, a, button {
+                cursor: none !important;
+            }
+        }
+
+        /* Menu specific relative overlay fading */
+        .menu-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            z-index: -1;
+            pointer-events: none;
+            filter: grayscale(40%) sepia(20%) brightness(0.6);
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        }
+
+        .category-card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(0,0,0,0));
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        .category-img {
+            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        }
+
+        .category-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .glow-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #22c55e, 0 0 20px #22c55e;
+        }
+
+        .drink-list-title {
+            display: inline-block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 8px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body class="bg-[#03080b]">
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-3 h-3 bg-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
+        style="pointer-events: none;"></div>
+    <div id="cursor-follower"
+        class="fixed w-10 h-10 border border-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
+        style="pointer-events: none;"></div>
+
+    <div class="menu-hero-bg"></div>
+
+    <!-- Full Screen Menu -->
+    <div id="fullscreen-menu" class="nav-overlay">
+        <button id="close-menu-btn"
+            class="absolute top-8 right-8 md:right-12 text-white hover:text-[#d4af37] transition-colors p-2 flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="absolute top-8 left-8 md:left-12 w-28 md:w-64 pt-2">
+            <img src="/img/logo.png" alt="CLUB YATA" class="w-full">
+        </div>
+
+        <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
+            <li><a href="index.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="#"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="floor.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">FLOOR<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="performer.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">PERFORMER<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="menu.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="#"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT
+                    US<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="absolute z-50 top-0 w-full px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+        <div class="w-28 md:w-64 pointer-events-auto">
+            <a href="index.html">
+                <img src="/img/logo.png" alt="YATA" class="w-full">
+            </a>
+        </div>
+    </nav>
+    <button id="menu-btn" class="fixed z-50 top-8 right-8 md:right-12 flex flex-col gap-[6px] p-2 group">
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+    </button>
+
+    <!-- Side Follow Us Text -->
+    <div
+        class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto">
+        <span class="vertical-text text-[9px] tracking-[0.5em] uppercase opacity-40">Follow us —</span>
+        <div class="flex flex-col gap-6 opacity-40 text-[9px]">
+            <a href="#" class="hover:text-[#d4af37] transition-colors">IG</a>
+            <a href="#" class="hover:text-[#d4af37] transition-colors">TW</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex flex-col justify-center px-8 md:px-[15%] text-center fade-section">
+        <div id="hero-content" class="relative z-10 space-y-6 max-w-4xl mx-auto pt-20">
+            <p class="cursive-title text-4xl md:text-5xl opacity-90 tracking-[0.2em] mb-8 mx-auto -rotate-[4deg] w-max whitespace-nowrap">Yata Menu & Charge</p>
+            <h1 class="jp-font text-[#d4af37] text-2xl md:text-3xl font-light tracking-[0.1em] leading-[1.8] mb-8">
+                上質なひと時と優しい語らい。<br>
+                それはいつも好みのお酒とともに
+            </h1>
+            <p class="jp-font text-white/70 text-[10px] md:text-xs font-light tracking-[0.1em] leading-[2.6] max-w-2xl mx-auto pt-4 shadow-black drop-shadow-lg">
+                CLUB YATAでは様々なメニューをご用意しております。好みの極上ワイン、シャンパン、<br class="hidden md:block">
+                ウイスキーなどをご用意しております。お客様の好みに合ったご満足いただけるよう<br class="hidden md:block">
+                シンプルながら洗練されたドリンクをご用意しておりますので、どうぞお申し付けください。
+            </p>
+            
+            <div class="pt-16">
+                <a href="#" class="text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors pb-1 border-b border-transparent hover:border-[#d4af37]">
+                    CHARGE &gt;
+                </a>
+            </div>
+            
+            <!-- Accordion added below CTA -->
+            <div class="mt-12 mx-auto overflow-hidden w-full max-w-[500px]">
+                <div class="w-full h-[1px] bg-white/40 mb-2"></div>
+                <button class="accordion-header flex items-center justify-between w-full py-4 hover:text-[#d4af37] transition-colors group">
+                    <span class="text-[10px] tracking-[0.4em] font-sans uppercase">System / Charge</span>
+                    <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                        <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                        <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                    </span>
+                </button>
+                <div class="accordion-content overflow-hidden text-left h-0">
+                    <div class="pt-6 pb-6 text-white/70 text-[11px] md:text-[13px] leading-[2.4] tracking-widest font-extralight break-words w-full px-4 border-t border-white/10">
+                        SET CHARGE: ¥11,000 / 60min<br>
+                        VIP ROOM: ¥22,000 / 60min<br>
+                        TAX/SERVICE: 20%<br><br>
+                        ※料金はすべて税込価格となっております。<br>
+                        ※ご予約のお客様を優先してご案内しております。
+                    </div>
+                </div>
+                <div class="w-full h-[1px] bg-white/40 mt-2"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Content Sections Wrapper -->
+    <div class="max-w-[1000px] mx-auto w-full px-6 pb-32">
+
+        <!-- Wine List (Image Left, Text Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-1 transform md:-translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:ml-auto md:mr-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1585553616435-2dc0a54e271d?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Wine Corks">
+                        <div class="category-label">
+                            WINE > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-2 text-center md:text-left">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているワインリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        WINE LIST >
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:mx-0">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left h-0">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2">
+                                <span class="text-[#d4af37] border-b border-[#d4af37]/30 pb-1 mb-2 inline-block">赤 (Red Wine)</span><br>
+                                シャトーラグランジュ<br>
+                                シーラーマルゴー<br>
+                                LLジュヴレシャンベルタン<br>
+                                シャトーカロンセギュール<br>
+                                ルシャンベルダン<br>
+                                オーパスワン<br>
+                                KENZO<br>
+                                ケンゾー エステイト：リンドウ<br>
+                                ケンゾー エステイト：ムラサキ<br>
+                                ケンゾー エステイト：アスカ<br>
+                                ケンゾー エステイト：アサツユ<br>
+                                ケンゾー エステイト：ユイ<br><br>
+                                <span class="text-[#d4af37] border-b border-[#d4af37]/30 pb-1 mb-2 inline-block">白 (White Wine)</span><br>
+                                ウィリアムフェーブル シャブリ<br>
+                                ウィリアムフェーブル プルミエクリュ ヴァイヨン<br>
+                                LLムルソー<br>
+                                ガヤ アルテ二 ディ ブラッシカ ソーヴィニョンブラン
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Champagne List (Text Left, Image Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-center md:text-right">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているシャンパンリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        CHAMPAGNE LIST >
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:ml-auto md:mr-0 pl-0 md:pl-2">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                ペリエ・ジェエ・ベルエポック フル<br>
+                                ペリエ・ジェエ・ベルエポック ロゼ<br>
+                                ペリエ・ジェエ・ブラン ド ブラン<br>
+                                ペリエ・ジェエ・ブラゾン ロゼ<br>
+                                クリュグ フル<br>
+                                クリュグ ハーフ<br>
+                                ローランペリエ ブリュット<br>
+                                ローランペリエ ロゼ<br>
+                                ローランペリエ クランシェクル<br>
+                                ローランペリエ アレキサンドラロゼ<br>
+                                ヴーヴ・クリコ フル<br>
+                                ヴーヴ・クリコ ハーフ<br>
+                                ニコラ・フィアット ブルーラベル<br>
+                                ニコラ・フィアット パルムドール<br>
+                                バロン・ド・ロスチャイルド フル<br>
+                                バロン・ド・ロスチャイルド ハーフ<br>
+                                ドンペリ ヴィンテージ(白)<br>
+                                ドンペリ ロゼヴィンテージ<br>
+                                アルマンドブリュット
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2 transform md:translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:mr-auto md:ml-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Champagne Glass">
+                        <div class="category-label">
+                            CHAMPAGNE > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Whisky List (Image Left, Text Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-1 transform md:-translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:ml-auto md:mr-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1527281400683-1aae777175f8?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Whisky Glass">
+                        <div class="category-label">
+                            WHISKY > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-2 text-center md:text-left">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているウイスキーリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        WHISKY LIST >
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:mx-0">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left h-0">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                余市<br>
+                                知多<br>
+                                マッカラン 12年<br>
+                                マッカラン 18年<br>
+                                マッカラン<br>
+                                ファインオーク<br>
+                                バランタイン 17年<br>
+                                バランタイン 21年<br>
+                                シーバス 18年<br>
+                                シーバスミズナラ<br>
+                                オールドバー 12年<br>
+                                オールドバー 18年<br>
+                                メーカーズマーク<br>
+                                ジョニーウォーカーブルーラベル
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brandy List (Text Left, Image Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-center md:text-right">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているブランデーリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        BRANDY LIST >
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:ml-auto md:mr-0 pl-0 md:pl-2">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                ヘネシー VSOP<br>
+                                ヘネシー XO<br>
+                                ヘネシー パラディ<br>
+                                コルドンブルー<br>
+                                ポールジロー 25年
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2 transform md:translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:mr-auto md:ml-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1563223771-5fe4038fbfc9?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Brandy Glass">
+                        <div class="category-label">
+                            BRANDY > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bourbon List (Image Left, Text Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-1 transform md:-translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:ml-auto md:mr-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1615887023516-986064f26be8?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Bourbon Glasses">
+                        <div class="category-label">
+                            BOURBON > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-2 text-center md:text-left">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているバーボンリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        BOURBON LIST >
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:mx-0">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left h-0">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                I.Wハーパーゴールド<br>
+                                I.Wハーパー 12年<br>
+                                フォアローゼスプラチナ<br>
+                                ワイルドターキー 8年
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Others List (Text Left, Image Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-center md:text-right">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているその他のドリンクのリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        OTHERS LIST >
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:ml-auto md:mr-0 pl-0 md:pl-2">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                黒霧島<br>
+                                赤霧島<br>
+                                一刻者<br>
+                                黒甕<br>
+                                神の河<br>
+                                吉四六<br>
+                                いいちこフラスコ<br>
+                                いいちこスペシャル<br><br>
+                                <span class="text-[#d4af37] border-b border-[#d4af37]/30 pb-1 mb-2 inline-block">ビール、各種ソフトドリンクなど</span><br>
+                                ※詳しくはスタッフまでお尋ねください。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2 transform md:translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:mr-auto md:ml-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Other Drinks">
+                        <div class="category-label">
+                            OTHERS > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer & CTA -->
+    <footer class="mt-10 border-t border-white/5 relative z-10">
+        <!-- Site Map Footer -->
+        <div class="w-full max-w-[1400px] mx-auto px-8 md:px-[15%] py-20 bg-black/50">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 font-light tracking-widest text-[#d4af37] text-[10px] md:text-xs">
+                <div>
+                    <img src="/img/logo.png" alt="CLUB YATA" class="w-16 mb-6 opacity-80">
+                </div>
+                
+                <div class="space-y-4">
+                    <p>営業時間<br><span class="text-white/70">19:00 - 23:00 (通常L.O 22:30)</span></p>
+                    <p>定休日<br><span class="text-white/70">土日・祝日および指定の店休日<br>※金曜は要予約にて</span></p>
+                </div>
+
+                <div class="space-y-4">
+                    <a href="index.html" class="block hover:text-white transition-colors">HOME</a>
+                    <a href="#" class="block hover:text-white transition-colors">CONCEPT</a>
+                    <a href="floor.html" class="block hover:text-white transition-colors">FLOOR</a>
+                    <a href="performer.html" class="block hover:text-white transition-colors">PERFORMER</a>
+                    <a href="menu.html" class="block hover:text-white transition-colors text-white">MENU</a>
+                    <a href="#" class="block hover:text-white transition-colors">CONTACT US</a>
+                </div>
+
+                <div class="space-y-4">
+                    <p>TEL: <span class="font-serif text-white/70">03-XXXX-XXXX</span></p>
+                    <p>MAIL: <span class="font-serif text-white/70">info@clubyata.com</span></p>
+                    <div class="flex gap-4 pt-4">
+                        <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                        <a href="#" class="hover:text-white transition-colors">Line</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center py-10 mt-10 border-t border-white/5 text-[9px] tracking-[0.2em] font-serif text-white/30 uppercase">
+                © 2024 CLUB YATA. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lenis for smooth scrolling
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Register GSAP ScrollTrigger
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0, 0);
+
+            // Custom Cursor Logic
+            const cursor = document.getElementById('cursor');
+            const cursorFollower = document.getElementById('cursor-follower');
+
+            if (window.innerWidth > 768) {
+                gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+                gsap.set(cursorFollower, { xPercent: -50, yPercent: -50 });
+
+                let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+                let followerX = window.innerWidth / 2, followerY = window.innerHeight / 2;
+
+                window.addEventListener('mousemove', e => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.1, ease: "power2.out" });
+                });
+
+                gsap.ticker.add(() => {
+                    followerX += (mouseX - followerX) * 0.15;
+                    followerY += (mouseY - followerY) * 0.15;
+                    gsap.set(cursorFollower, { x: followerX, y: followerY });
+                });
+
+                const hoverTags = document.querySelectorAll('a, button, .menu-link');
+                hoverTags.forEach(tag => {
+                    tag.addEventListener('mouseenter', () => {
+                        gsap.to(cursor, { scale: 3, opacity: 0.5, duration: 0.3 });
+                        gsap.to(cursorFollower, { scale: 1.5, borderColor: 'transparent', backgroundColor: 'rgba(212, 175, 55, 0.2)', duration: 0.3 });
+                    });
+                    tag.addEventListener('mouseleave', () => {
+                        gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
+                        gsap.to(cursorFollower, { scale: 1, borderColor: '#d4af37', backgroundColor: 'transparent', duration: 0.3 });
+                    });
+                });
+            }
+
+            // --- Menu Overlay Logic ---
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const menuOverlay = document.getElementById('fullscreen-menu');
+            const menuLinks = document.querySelectorAll('.menu-link');
+
+            let menuTl = gsap.timeline({ paused: true });
+            menuTl.to(menuOverlay, { opacity: 1, duration: 0.4, ease: "power2.inOut" })
+                .from(menuLinks, { x: 50, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power3.out" }, "-=0.2");
+
+            menuBtn.addEventListener('click', () => {
+                menuOverlay.classList.add('active');
+                menuTl.play();
+                lenis.stop();
+            });
+
+            closeBtn.addEventListener('click', () => {
+                menuTl.reverse().then(() => {
+                    menuOverlay.classList.remove('active');
+                    lenis.start();
+                });
+            });
+
+            const tl = gsap.timeline();
+
+            tl.from("nav, #menu-btn", { y: -30, opacity: 0, duration: 1.2, ease: "power2.out", clearProps: "all" })
+                .from("#hero-content > *", { y: 30, opacity: 0, stagger: 0.2, duration: 1.2, ease: "power3.out" }, "-=0.8");
+
+            // Animate Sections on scroll
+            const sections = document.querySelectorAll('.fade-section');
+            sections.forEach(section => {
+                gsap.from(section, {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Image parallax
+            const categoryCards = document.querySelectorAll('.category-card img');
+            categoryCards.forEach(img => {
+                gsap.to(img, {
+                    yPercent: 15,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: img.parentElement,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                });
+            });
+
+            // Accordion Logic
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function () {
+                    const content = this.nextElementSibling;
+                    const verticalLine = this.querySelector('.acc-vertical');
+
+                    this.classList.toggle('active');
+
+                    if (this.classList.contains('active')) {
+                        gsap.to(content, { height: 'auto', duration: 0.5, ease: 'power2.out' });
+                        gsap.to(verticalLine, { rotate: 0, duration: 0.3 });
+                        setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh() }, 500);
+                    } else {
+                        gsap.to(content, { height: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(verticalLine, { rotate: 90, duration: 0.3 });
+                        setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh() }, 400);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
