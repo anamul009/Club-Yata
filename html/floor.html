@@ -9,162 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@400;700&family=Noto+Serif+JP:wght@200;300;400;500&family=Great+Vibes&display=swap');
-
-        body {
-            background-color: #03080b;
-            color: #ffffff;
-            font-family: 'Playfair Display', serif;
-            overflow-x: hidden;
-        }
-
-        .jp-font {
-            font-family: 'Noto Serif JP', serif;
-        }
-
-        .cursive-title {
-            font-family: 'Great Vibes', cursive;
-        }
-
-        .golden-text {
-            color: #d4af37;
-        }
-
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-        }
-
-        .nav-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(3, 8, 11, 0.95);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 10vw;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .nav-overlay::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('img/menu-img.jpg');
-            background-size: cover;
-            background-position: center right;
-            opacity: 0.4;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .nav-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        @keyframes scrollLine {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        .scroll-line-anim {
-            animation: scrollLine 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-        }
-
-        @keyframes scrollText {
-            0%, 100% { opacity: 0.6; text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); transform: translateY(0); }
-            50% { opacity: 1; text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(212, 175, 55, 0.8); transform: translateY(8px); }
-        }
-
-        .scroll-text-anim {
-            animation: scrollText 2s ease-in-out infinite;
-        }
-
-        @media (min-width: 768px) {
-            body, a, button {
-                cursor: none !important;
-            }
-        }
-
-        /* Floor specific styles */
-        .floor-hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop'); /* Dim elegant restaurant/lounge */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.5;
-            z-index: -1;
-            pointer-events: none;
-            filter: grayscale(30%) sepia(20%) brightness(0.5);
-            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-        }
-
-        .floral-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1490750967868-88cb4ecb0704?q=80&w=2000&auto=format&fit=crop'); /* Floral branches */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-            z-index: -1;
-            pointer-events: none;
-            mix-blend-mode: screen;
-            filter: grayscale(100%) contrast(150%);
-        }
-
-        .capsule-card {
-            border-radius: 4rem;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            position: relative;
-            background: rgba(255, 255, 255, 0.02);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .capsule-img {
-            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-        }
-
-        .room-title {
-            font-size: 14px;
-            letter-spacing: 0.2em;
-            margin-bottom: 12px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        }
-
-        .room-desc {
-            font-size: 10px;
-            line-height: 2.2;
-            letter-spacing: 0.15em;
-            opacity: 0.7;
-        }
-
-        @media (min-width: 768px) {
-            .capsule-card {
-                border-radius: 5rem;
-            }
-            .room-title {
-                font-size: 18px;
-            }
-            .room-desc {
-                font-size: 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body class="bg-[#03080b]">
@@ -185,16 +30,16 @@
             </svg>
         </button>
         <div class="absolute top-8 left-8 md:left-12 w-28 md:w-64 pt-2">
-            <img src="/img/logo.png" alt="CLUB YATA" class="w-full">
+            <img src="../img/logo.png" alt="CLUB YATA" class="w-full">
         </div>
 
         <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
             <li><a href="index.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
-            <li><a href="#" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="concept.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
             <li><a href="floor.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group text-[#d4af37]">FLOOR<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
             <li><a href="performer.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">PERFORMER<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
             <li><a href="menu.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
-            <li><a href="#" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT US<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="contact.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT US<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
         </ul>
     </div>
 
@@ -202,7 +47,7 @@
     <nav class="absolute z-50 top-0 w-full px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
         <div class="w-28 md:w-64 pointer-events-auto">
             <a href="index.html">
-                <img src="/img/logo.png" alt="YATA" class="w-full">
+                <img src="../img/logo.png" alt="YATA" class="w-full">
             </a>
         </div>
     </nav>
@@ -212,7 +57,7 @@
     </button>
 
     <!-- Side Follow Us Text -->
-    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto">
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto vertical-text-container">
         <span class="vertical-text text-[9px] tracking-[0.5em] uppercase opacity-40">Follow us —</span>
         <div class="flex flex-col gap-6 opacity-40 text-[9px]">
             <a href="#" class="hover:text-[#d4af37] transition-colors">IG</a>
@@ -223,7 +68,7 @@
     <!-- Hero Section -->
     <section class="relative h-screen flex flex-col justify-center px-8 md:px-[15%] text-center fade-section">
         <div id="hero-content" class="relative z-10 space-y-6 max-w-4xl mx-auto pt-20">
-            <p class="cursive-title text-4xl md:text-5xl opacity-90 tracking-[0.2em] mb-12 mx-auto -rotate-[4deg] w-max whitespace-nowrap">Yata Floor Introduction</p>
+            <p class="cursive-title text-4xl md:text-5xl opacity-90 tracking-[0.2em] mb-12 mx-auto -rotate-[4deg] inline-block md:w-max md:whitespace-nowrap">Yata Floor Introduction</p>
             <h1 class="jp-font text-[#d4af37] text-xl md:text-3xl font-light tracking-[0.1em] leading-[2] drop-shadow-lg">
                 プレミアムなあなたのために<br>
                 CLUB YATAが極上のひとときをお届けします。
@@ -400,179 +245,51 @@
     </div>
 
     <!-- Footer & CTA -->
-    <footer class="mt-10 border-t border-white/5 relative z-10">
-        <!-- Site Map Footer -->
-        <div class="w-full max-w-[1400px] mx-auto px-8 md:px-[15%] py-20 bg-black/50">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 font-light tracking-widest text-[#d4af37] text-[10px] md:text-xs">
+    <!-- Minimal Footer -->
+    <footer class="relative z-10 w-full px-6 md:px-[6%] py-12 md:py-20 bg-[#03080b]/90 border-t border-white/10 mt-10">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 text-center md:text-left jp-font font-light tracking-widest text-[#e0e0e0] text-[10px] md:text-xs leading-loose">
+            
+            <!-- Column 1: Logo -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="block w-20 md:w-24">
+                    <img src="../img/logo.png" alt="CLUB YATA Logo" class="w-full h-auto">
+                </a>
+            </div>
+
+            <!-- Column 2: Info (営業時間, 住所) -->
+            <div class="flex-1 max-w-[320px]">
+                <div class="mb-4">
+                    <p>営業時間</p>
+                    <p>19:00〜00:00 / 定休日：不定休</p>
+                </div>
                 <div>
-                    <img src="/img/logo.png" alt="CLUB YATA" class="w-16 mb-6 opacity-80">
-                </div>
-                
-                <div class="space-y-4">
-                    <p>営業時間<br><span class="text-white/70">19:00 - 23:00 (通常L.O 22:30)</span></p>
-                    <p>定休日<br><span class="text-white/70">土日・祝日および指定の店休日<br>※金曜は要予約にて</span></p>
-                </div>
-
-                <div class="space-y-4">
-                    <a href="index.html" class="block hover:text-white transition-colors">HOME</a>
-                    <a href="#" class="block hover:text-white transition-colors">CONCEPT</a>
-                    <a href="floor.html" class="block hover:text-white transition-colors text-white">FLOOR</a>
-                    <a href="performer.html" class="block hover:text-white transition-colors">PERFORMER</a>
-                    <a href="menu.html" class="block hover:text-white transition-colors">MENU</a>
-                    <a href="#" class="block hover:text-white transition-colors">CONTACT US</a>
-                </div>
-
-                <div class="space-y-4">
-                    <p>TEL: <span class="font-serif text-white/70">03-XXXX-XXXX</span></p>
-                    <p>MAIL: <span class="font-serif text-white/70">info@clubyata.com</span></p>
-                    <div class="flex gap-4 pt-4">
-                        <a href="#" class="hover:text-white transition-colors">Instagram</a>
-                        <a href="#" class="hover:text-white transition-colors">Line</a>
-                    </div>
+                    <p>住所</p>
+                    <p>岡山県岡山市北区本町8-16 本町</p>
+                    <p>プラザ2F</p>
                 </div>
             </div>
 
-            <div class="text-center py-10 mt-10 border-t border-white/5 text-[9px] tracking-[0.2em] font-serif text-white/30 uppercase">
-                © 2024 CLUB YATA. All rights reserved.
+            <!-- Column 3: Links -->
+            <div class="flex flex-col space-y-2 uppercase">
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">POLICIES</a>
             </div>
+
+            <!-- Column 4: Phone & Copyright -->
+            <div class="flex flex-col items-center md:items-end justify-between self-stretch">
+                <div class="mb-4 md:mb-0 text-center md:text-right">
+                    <p class="uppercase text-[9px] mb-1">Telephone :</p>
+                    <p class="font-serif text-sm md:text-base tracking-widest whitespace-nowrap">087-822-7567</p>
+                </div>
+                <div class="mt-auto pt-6 text-[9px] text-[#e0e0e0]/50 uppercase font-serif">
+                    Copyright 2024 CLUBYATA . Terms & Privacy
+                </div>
+            </div>
+
         </div>
     </footer>
 
-    <script>
-        // Initialize Lenis for smooth scrolling
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            touchMultiplier: 2,
-            infinite: false,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // Register GSAP ScrollTrigger
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => {
-                lenis.raf(time * 1000);
-            });
-            gsap.ticker.lagSmoothing(0, 0);
-
-            // Custom Cursor Logic
-            const cursor = document.getElementById('cursor');
-            const cursorFollower = document.getElementById('cursor-follower');
-
-            if (window.innerWidth > 768) {
-                gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-                gsap.set(cursorFollower, { xPercent: -50, yPercent: -50 });
-
-                let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-                let followerX = window.innerWidth / 2, followerY = window.innerHeight / 2;
-
-                window.addEventListener('mousemove', e => {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.1, ease: "power2.out" });
-                });
-
-                gsap.ticker.add(() => {
-                    followerX += (mouseX - followerX) * 0.15;
-                    followerY += (mouseY - followerY) * 0.15;
-                    gsap.set(cursorFollower, { x: followerX, y: followerY });
-                });
-
-                const hoverTags = document.querySelectorAll('a, button, .menu-link');
-                hoverTags.forEach(tag => {
-                    tag.addEventListener('mouseenter', () => {
-                        gsap.to(cursor, { scale: 3, opacity: 0.5, duration: 0.3 });
-                        gsap.to(cursorFollower, { scale: 1.5, borderColor: 'transparent', backgroundColor: 'rgba(212, 175, 55, 0.2)', duration: 0.3 });
-                    });
-                    tag.addEventListener('mouseleave', () => {
-                        gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
-                        gsap.to(cursorFollower, { scale: 1, borderColor: '#d4af37', backgroundColor: 'transparent', duration: 0.3 });
-                    });
-                });
-            }
-
-            // --- Menu Overlay Logic ---
-            const menuBtn = document.getElementById('menu-btn');
-            const closeBtn = document.getElementById('close-menu-btn');
-            const menuOverlay = document.getElementById('fullscreen-menu');
-            const menuLinks = document.querySelectorAll('.menu-link');
-
-            let menuTl = gsap.timeline({ paused: true });
-            menuTl.to(menuOverlay, { opacity: 1, duration: 0.4, ease: "power2.inOut" })
-                .from(menuLinks, { x: 50, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power3.out" }, "-=0.2");
-
-            menuBtn.addEventListener('click', () => {
-                menuOverlay.classList.add('active');
-                menuTl.play();
-                lenis.stop();
-            });
-
-            closeBtn.addEventListener('click', () => {
-                menuTl.reverse().then(() => {
-                    menuOverlay.classList.remove('active');
-                    lenis.start();
-                });
-            });
-
-            const tl = gsap.timeline();
-
-            // Hero Load Animation
-            tl.from("nav, #menu-btn", { y: -30, opacity: 0, duration: 1.2, ease: "power2.out", clearProps: "all" })
-                .from("#hero-content > *", { y: 30, opacity: 0, stagger: 0.2, duration: 1.2, ease: "power3.out" }, "-=0.8")
-                .from(".vertical-text", { x: -20, opacity: 0, duration: 1, ease: "power2.out" }, "-=1");
-
-            // Animate Sections on scroll
-            const sections = document.querySelectorAll('.fade-section');
-            sections.forEach(section => {
-                gsap.from(section, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 1.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                        end: "bottom 20%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-            
-            // Image parallax
-            const categoryCards = document.querySelectorAll('.capsule-img');
-            categoryCards.forEach(img => {
-                gsap.to(img, {
-                    yPercent: 15,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: img.parentElement,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: true
-                    }
-                });
-            });
-
-            // Floral Background Parallax
-            gsap.to('.floral-bg', {
-                yPercent: -20,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-        }
-    </script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

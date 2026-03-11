@@ -9,156 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@400;700&family=Noto+Serif+JP:wght@200;300;400;500&family=Great+Vibes&display=swap');
-
-        body {
-            background-color: #03080b;
-            color: #ffffff;
-            font-family: 'Playfair Display', serif;
-            overflow-x: hidden;
-        }
-
-        .jp-font {
-            font-family: 'Noto Serif JP', serif;
-        }
-
-        .cursive-title {
-            font-family: 'Great Vibes', cursive;
-        }
-
-        .golden-text {
-            color: #d4af37;
-        }
-
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-        }
-
-        .nav-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(3, 8, 11, 0.95);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 10vw;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .nav-overlay::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('img/menu-img.jpg');
-            background-size: cover;
-            background-position: center right;
-            opacity: 0.4;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .nav-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        @keyframes scrollLine {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        .scroll-line-anim {
-            animation: scrollLine 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-        }
-
-        @keyframes scrollText {
-            0%, 100% {
-                opacity: 0.6;
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-                transform: translateY(0);
-            }
-            50% {
-                opacity: 1;
-                text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(212, 175, 55, 0.8);
-                transform: translateY(8px);
-            }
-        }
-
-        .scroll-text-anim {
-            animation: scrollText 2s ease-in-out infinite;
-        }
-
-        @media (min-width: 768px) {
-            body, a, button {
-                cursor: none !important;
-            }
-        }
-
-        /* Menu specific relative overlay fading */
-        .menu-hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.5;
-            z-index: -1;
-            pointer-events: none;
-            filter: grayscale(40%) sepia(20%) brightness(0.6);
-            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-        }
-
-        .category-card {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(0,0,0,0));
-            box-shadow: inset 0 0 20px rgba(255,255,255,0.1);
-        }
-
-        .category-img {
-            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-        }
-
-        .category-label {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #fff;
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-        }
-
-        .glow-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #22c55e;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #22c55e, 0 0 20px #22c55e;
-        }
-
-        .drink-list-title {
-            display: inline-block;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            padding-bottom: 8px;
-            margin-top: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body class="bg-[#03080b]">
@@ -182,7 +33,7 @@
             </svg>
         </button>
         <div class="absolute top-8 left-8 md:left-12 w-28 md:w-64 pt-2">
-            <img src="/img/logo.png" alt="CLUB YATA" class="w-full">
+            <img src="../img/logo.png" alt="CLUB YATA" class="w-full">
         </div>
 
         <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
@@ -190,7 +41,7 @@
                     class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span
                         class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
             </li>
-            <li><a href="#"
+            <li><a href="concept.html"
                     class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span
                         class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
             </li>
@@ -206,7 +57,7 @@
                     class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span
                         class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
             </li>
-            <li><a href="#"
+            <li><a href="contact.html"
                     class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT
                     US<span
                         class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
@@ -218,7 +69,7 @@
     <nav class="absolute z-50 top-0 w-full px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
         <div class="w-28 md:w-64 pointer-events-auto">
             <a href="index.html">
-                <img src="/img/logo.png" alt="YATA" class="w-full">
+                <img src="../img/logo.png" alt="YATA" class="w-full">
             </a>
         </div>
     </nav>
@@ -228,8 +79,7 @@
     </button>
 
     <!-- Side Follow Us Text -->
-    <div
-        class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto">
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto vertical-text-container">
         <span class="vertical-text text-[9px] tracking-[0.5em] uppercase opacity-40">Follow us —</span>
         <div class="flex flex-col gap-6 opacity-40 text-[9px]">
             <a href="#" class="hover:text-[#d4af37] transition-colors">IG</a>
@@ -240,7 +90,7 @@
     <!-- Hero Section -->
     <section class="relative h-screen flex flex-col justify-center px-8 md:px-[15%] text-center fade-section">
         <div id="hero-content" class="relative z-10 space-y-6 max-w-4xl mx-auto pt-20">
-            <p class="cursive-title text-4xl md:text-5xl opacity-90 tracking-[0.2em] mb-8 mx-auto -rotate-[4deg] w-max whitespace-nowrap">Yata Menu & Charge</p>
+            <p class="cursive-title text-4xl md:text-5xl opacity-90 tracking-[0.2em] mb-8 mx-auto -rotate-[4deg] inline-block md:w-max md:whitespace-nowrap">Yata Menu & Charge</p>
             <h1 class="jp-font text-[#d4af37] text-2xl md:text-3xl font-light tracking-[0.1em] leading-[1.8] mb-8">
                 上質なひと時と優しい語らい。<br>
                 それはいつも好みのお酒とともに
@@ -251,15 +101,29 @@
                 シンプルながら洗練されたドリンクをご用意しておりますので、どうぞお申し付けください。
             </p>
             
-            <div class="pt-16">
-                <a href="#" class="text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors pb-1 border-b border-transparent hover:border-[#d4af37]">
-                    CHARGE &gt;
-                </a>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
+            <p class="text-[11px] tracking-[0.5em] uppercase mb-4 vertical-text text-white font-medium scroll-text-anim">scroll</p>
+            <div class="w-px h-16 bg-white/20 mx-auto relative overflow-hidden drop-shadow-lg">
+                <div class="w-full h-full bg-gradient-to-b from-[#d4af37] to-transparent absolute top-0 left-0 scroll-line-anim"></div>
             </div>
-            
-            <!-- Accordion added below CTA -->
-            <div class="mt-12 mx-auto overflow-hidden w-full max-w-[500px]">
-                <div class="w-full h-[1px] bg-white/40 mb-2"></div>
+        </div>
+    </section>
+
+    <!-- Content Sections Wrapper -->
+    <div class="max-w-[1000px] mx-auto w-full px-6 pb-32">
+        
+        <!-- Charge CTA & Accordion Moved Below Hero -->
+        <div class="pt-16 pb-12 flex flex-col items-center fade-section">
+            <a href="#" class="text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors pb-1 border-b border-white/20 hover:border-[#d4af37]">
+                CHARGE &gt;
+            </a>
+
+            <!-- Accordion -->
+            <div class="mt-8 mx-auto overflow-hidden w-full max-w-[500px]">
+                <div class="w-full h-[1px] bg-white/20 mb-2"></div>
                 <button class="accordion-header flex items-center justify-between w-full py-4 hover:text-[#d4af37] transition-colors group">
                     <span class="text-[10px] tracking-[0.4em] font-sans uppercase">System / Charge</span>
                     <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
@@ -267,7 +131,7 @@
                         <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
                     </span>
                 </button>
-                <div class="accordion-content overflow-hidden text-left h-0">
+                <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
                     <div class="pt-6 pb-6 text-white/70 text-[11px] md:text-[13px] leading-[2.4] tracking-widest font-extralight break-words w-full px-4 border-t border-white/10">
                         SET CHARGE: ¥11,000 / 60min<br>
                         VIP ROOM: ¥22,000 / 60min<br>
@@ -276,11 +140,9 @@
                         ※ご予約のお客様を優先してご案内しております。
                     </div>
                 </div>
-                <div class="w-full h-[1px] bg-white/40 mt-2"></div>
+                <div class="w-full h-[1px] bg-white/20 mt-2"></div>
             </div>
-
         </div>
-    </section>
 
     <!-- Content Sections Wrapper -->
     <div class="max-w-[1000px] mx-auto w-full px-6 pb-32">
@@ -310,10 +172,10 @@
                             <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
                             <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
                                 <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
-                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
                             </span>
                         </button>
-                        <div class="accordion-content overflow-hidden text-left h-0">
+                        <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
                             <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2">
                                 <span class="text-[#d4af37] border-b border-[#d4af37]/30 pb-1 mb-2 inline-block">赤 (Red Wine)</span><br>
                                 シャトーラグランジュ<br>
@@ -357,10 +219,10 @@
                             <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
                             <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
                                 <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
-                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
                             </span>
                         </button>
-                        <div class="accordion-content overflow-hidden text-left md:text-right h-0">
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0 transition-[height] duration-500 ease-in-out">
                             <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
                                 ペリエ・ジェエ・ベルエポック フル<br>
                                 ペリエ・ジェエ・ベルエポック ロゼ<br>
@@ -421,10 +283,10 @@
                             <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
                             <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
                                 <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
-                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
                             </span>
                         </button>
-                        <div class="accordion-content overflow-hidden text-left h-0">
+                        <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
                             <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
                                 余市<br>
                                 知多<br>
@@ -464,10 +326,10 @@
                             <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
                             <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
                                 <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
-                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
                             </span>
                         </button>
-                        <div class="accordion-content overflow-hidden text-left md:text-right h-0">
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0 transition-[height] duration-500 ease-in-out">
                             <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
                                 ヘネシー VSOP<br>
                                 ヘネシー XO<br>
@@ -514,10 +376,10 @@
                             <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
                             <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
                                 <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
-                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
                             </span>
                         </button>
-                        <div class="accordion-content overflow-hidden text-left h-0">
+                        <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
                             <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
                                 I.Wハーパーゴールド<br>
                                 I.Wハーパー 12年<br>
@@ -547,10 +409,10 @@
                             <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
                             <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
                                 <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
-                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
                             </span>
                         </button>
-                        <div class="accordion-content overflow-hidden text-left md:text-right h-0">
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0 transition-[height] duration-500 ease-in-out">
                             <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
                                 黒霧島<br>
                                 赤霧島<br>
@@ -580,186 +442,51 @@
     </div>
 
     <!-- Footer & CTA -->
-    <footer class="mt-10 border-t border-white/5 relative z-10">
-        <!-- Site Map Footer -->
-        <div class="w-full max-w-[1400px] mx-auto px-8 md:px-[15%] py-20 bg-black/50">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 font-light tracking-widest text-[#d4af37] text-[10px] md:text-xs">
+    <!-- Minimal Footer -->
+    <footer class="relative z-10 w-full px-6 md:px-[6%] py-12 md:py-20 bg-[#03080b]/90 border-t border-white/10 mt-10">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 text-center md:text-left jp-font font-light tracking-widest text-[#e0e0e0] text-[10px] md:text-xs leading-loose">
+            
+            <!-- Column 1: Logo -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="block w-20 md:w-24">
+                    <img src="../img/logo.png" alt="CLUB YATA Logo" class="w-full h-auto">
+                </a>
+            </div>
+
+            <!-- Column 2: Info (営業時間, 住所) -->
+            <div class="flex-1 max-w-[320px]">
+                <div class="mb-4">
+                    <p>営業時間</p>
+                    <p>19:00〜00:00 / 定休日：不定休</p>
+                </div>
                 <div>
-                    <img src="/img/logo.png" alt="CLUB YATA" class="w-16 mb-6 opacity-80">
-                </div>
-                
-                <div class="space-y-4">
-                    <p>営業時間<br><span class="text-white/70">19:00 - 23:00 (通常L.O 22:30)</span></p>
-                    <p>定休日<br><span class="text-white/70">土日・祝日および指定の店休日<br>※金曜は要予約にて</span></p>
-                </div>
-
-                <div class="space-y-4">
-                    <a href="index.html" class="block hover:text-white transition-colors">HOME</a>
-                    <a href="#" class="block hover:text-white transition-colors">CONCEPT</a>
-                    <a href="floor.html" class="block hover:text-white transition-colors">FLOOR</a>
-                    <a href="performer.html" class="block hover:text-white transition-colors">PERFORMER</a>
-                    <a href="menu.html" class="block hover:text-white transition-colors text-white">MENU</a>
-                    <a href="#" class="block hover:text-white transition-colors">CONTACT US</a>
-                </div>
-
-                <div class="space-y-4">
-                    <p>TEL: <span class="font-serif text-white/70">03-XXXX-XXXX</span></p>
-                    <p>MAIL: <span class="font-serif text-white/70">info@clubyata.com</span></p>
-                    <div class="flex gap-4 pt-4">
-                        <a href="#" class="hover:text-white transition-colors">Instagram</a>
-                        <a href="#" class="hover:text-white transition-colors">Line</a>
-                    </div>
+                    <p>住所</p>
+                    <p>岡山県岡山市北区本町8-16 本町</p>
+                    <p>プラザ2F</p>
                 </div>
             </div>
 
-            <div class="text-center py-10 mt-10 border-t border-white/5 text-[9px] tracking-[0.2em] font-serif text-white/30 uppercase">
-                © 2024 CLUB YATA. All rights reserved.
+            <!-- Column 3: Links -->
+            <div class="flex flex-col space-y-2 uppercase">
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">POLICIES</a>
             </div>
+
+            <!-- Column 4: Phone & Copyright -->
+            <div class="flex flex-col items-center md:items-end justify-between self-stretch">
+                <div class="mb-4 md:mb-0 text-center md:text-right">
+                    <p class="uppercase text-[9px] mb-1">Telephone :</p>
+                    <p class="font-serif text-sm md:text-base tracking-widest whitespace-nowrap">087-822-7567</p>
+                </div>
+                <div class="mt-auto pt-6 text-[9px] text-[#e0e0e0]/50 uppercase font-serif">
+                    Copyright 2024 CLUBYATA . Terms & Privacy
+                </div>
+            </div>
+
         </div>
     </footer>
 
-    <script>
-        // Initialize Lenis for smooth scrolling
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            touchMultiplier: 2,
-            infinite: false,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // Register GSAP ScrollTrigger
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => {
-                lenis.raf(time * 1000);
-            });
-            gsap.ticker.lagSmoothing(0, 0);
-
-            // Custom Cursor Logic
-            const cursor = document.getElementById('cursor');
-            const cursorFollower = document.getElementById('cursor-follower');
-
-            if (window.innerWidth > 768) {
-                gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-                gsap.set(cursorFollower, { xPercent: -50, yPercent: -50 });
-
-                let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-                let followerX = window.innerWidth / 2, followerY = window.innerHeight / 2;
-
-                window.addEventListener('mousemove', e => {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.1, ease: "power2.out" });
-                });
-
-                gsap.ticker.add(() => {
-                    followerX += (mouseX - followerX) * 0.15;
-                    followerY += (mouseY - followerY) * 0.15;
-                    gsap.set(cursorFollower, { x: followerX, y: followerY });
-                });
-
-                const hoverTags = document.querySelectorAll('a, button, .menu-link');
-                hoverTags.forEach(tag => {
-                    tag.addEventListener('mouseenter', () => {
-                        gsap.to(cursor, { scale: 3, opacity: 0.5, duration: 0.3 });
-                        gsap.to(cursorFollower, { scale: 1.5, borderColor: 'transparent', backgroundColor: 'rgba(212, 175, 55, 0.2)', duration: 0.3 });
-                    });
-                    tag.addEventListener('mouseleave', () => {
-                        gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
-                        gsap.to(cursorFollower, { scale: 1, borderColor: '#d4af37', backgroundColor: 'transparent', duration: 0.3 });
-                    });
-                });
-            }
-
-            // --- Menu Overlay Logic ---
-            const menuBtn = document.getElementById('menu-btn');
-            const closeBtn = document.getElementById('close-menu-btn');
-            const menuOverlay = document.getElementById('fullscreen-menu');
-            const menuLinks = document.querySelectorAll('.menu-link');
-
-            let menuTl = gsap.timeline({ paused: true });
-            menuTl.to(menuOverlay, { opacity: 1, duration: 0.4, ease: "power2.inOut" })
-                .from(menuLinks, { x: 50, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power3.out" }, "-=0.2");
-
-            menuBtn.addEventListener('click', () => {
-                menuOverlay.classList.add('active');
-                menuTl.play();
-                lenis.stop();
-            });
-
-            closeBtn.addEventListener('click', () => {
-                menuTl.reverse().then(() => {
-                    menuOverlay.classList.remove('active');
-                    lenis.start();
-                });
-            });
-
-            const tl = gsap.timeline();
-
-            tl.from("nav, #menu-btn", { y: -30, opacity: 0, duration: 1.2, ease: "power2.out", clearProps: "all" })
-                .from("#hero-content > *", { y: 30, opacity: 0, stagger: 0.2, duration: 1.2, ease: "power3.out" }, "-=0.8");
-
-            // Animate Sections on scroll
-            const sections = document.querySelectorAll('.fade-section');
-            sections.forEach(section => {
-                gsap.from(section, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 1.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                        end: "bottom 20%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-            
-            // Image parallax
-            const categoryCards = document.querySelectorAll('.category-card img');
-            categoryCards.forEach(img => {
-                gsap.to(img, {
-                    yPercent: 15,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: img.parentElement,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: true
-                    }
-                });
-            });
-
-            // Accordion Logic
-            const accordions = document.querySelectorAll('.accordion-header');
-            accordions.forEach(acc => {
-                acc.addEventListener('click', function () {
-                    const content = this.nextElementSibling;
-                    const verticalLine = this.querySelector('.acc-vertical');
-
-                    this.classList.toggle('active');
-
-                    if (this.classList.contains('active')) {
-                        gsap.to(content, { height: 'auto', duration: 0.5, ease: 'power2.out' });
-                        gsap.to(verticalLine, { rotate: 0, duration: 0.3 });
-                        setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh() }, 500);
-                    } else {
-                        gsap.to(content, { height: 0, duration: 0.4, ease: 'power2.inOut' });
-                        gsap.to(verticalLine, { rotate: 90, duration: 0.3 });
-                        setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh() }, 400);
-                    }
-                });
-            });
-        }
-    </script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

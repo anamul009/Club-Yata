@@ -9,154 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@400;700&family=Noto+Serif+JP:wght@200;300;400;500&family=Great+Vibes&display=swap');
-
-        body {
-            background-color: #03080b;
-            color: #ffffff;
-            font-family: 'Playfair Display', serif;
-            overflow-x: hidden;
-        }
-
-        .jp-font {
-            font-family: 'Noto Serif JP', serif;
-        }
-
-        .cursive-title {
-            font-family: 'Great Vibes', cursive;
-        }
-
-        .golden-text {
-            color: #d4af37;
-        }
-
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-        }
-
-        .nav-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(3, 8, 11, 0.95);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 10vw;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .nav-overlay::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('img/menu-img.jpg');
-            background-size: cover;
-            background-position: center right;
-            opacity: 0.4;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .nav-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        @keyframes scrollLine {
-            0% {
-                transform: translateY(-100%);
-            }
-
-            100% {
-                transform: translateY(100%);
-            }
-        }
-
-        .scroll-line-anim {
-            animation: scrollLine 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-        }
-
-        @keyframes scrollText {
-
-            0%,
-            100% {
-                opacity: 0.6;
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-                transform: translateY(0);
-            }
-
-            50% {
-                opacity: 1;
-                text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(212, 175, 55, 0.8);
-                transform: translateY(8px);
-            }
-        }
-
-        .scroll-text-anim {
-            animation: scrollText 2s ease-in-out infinite;
-        }
-
-        @media (min-width: 768px) {
-
-            body,
-            a,
-            button {
-                cursor: none !important;
-            }
-        }
-
-        /* Performer specific styles */
-        .piano-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4;
-            z-index: -1;
-            pointer-events: none;
-            filter: grayscale(100%) brightness(0.6);
-            /* Fade out at the bottom using mask */
-            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-        }
-
-        .performer-card {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .performer-name-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 20px 20px;
-            background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 100%);
-            color: #000;
-        }
-
-        .leaf-decor {
-            position: absolute;
-            opacity: 0.6;
-            z-index: 0;
-            pointer-events: none !important;
-            mix-blend-mode: color-dodge;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body class="bg-[#03080b]">
+<body class="bg-[#03080b] overflow-x-hidden">
     <!-- Custom Cursor -->
     <div id="cursor" class="fixed w-3 h-3 bg-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
         style="pointer-events: none;"></div>
@@ -177,7 +33,7 @@
             </svg>
         </button>
         <div class="absolute top-8 left-8 md:left-12 w-28 md:w-64 pt-2">
-            <img src="/img/logo.png" alt="CLUB YATA" class="w-full">
+            <img src="../img/logo.png" alt="CLUB YATA" class="w-full">
         </div>
 
         <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
@@ -185,7 +41,7 @@
                     class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span
                         class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
             </li>
-            <li><a href="#"
+            <li><a href="concept.html"
                     class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span
                         class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
             </li>
@@ -201,7 +57,7 @@
                     class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span
                         class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
             </li>
-            <li><a href="#"
+            <li><a href="contact.html"
                     class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT
                     US<span
                         class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
@@ -213,7 +69,7 @@
     <nav class="absolute z-50 top-0 w-full px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
         <div class="w-28 md:w-64 pointer-events-auto">
             <a href="index.html">
-                <img src="/img/logo.png" alt="YATA" class="w-full">
+                <img src="../img/logo.png" alt="YATA" class="w-full">
             </a>
         </div>
     </nav>
@@ -223,8 +79,7 @@
     </button>
 
     <!-- Side Follow Us Text -->
-    <div
-        class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto">
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto vertical-text-container">
         <span class="vertical-text text-[9px] tracking-[0.5em] uppercase opacity-40">Follow us —</span>
         <div class="flex flex-col gap-6 opacity-40 text-[9px]">
             <a href="#" class="hover:text-[#d4af37] transition-colors">IG</a>
@@ -233,42 +88,40 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex flex-col justify-center px-8 md:px-[15%] text-center fade-section">
-        <div id="hero-content" class="relative z-10 space-y-6 max-w-4xl mx-auto pt-20">
-            <p class="cursive-title text-5xl md:text-7xl opacity-90 tracking-widest mb-12 transform -rotate-2">Club Yata
+    <section class="relative h-[80svh] md:min-h-[100svh] md:h-screen flex flex-col justify-center px-8 md:px-[15%] text-center fade-section pt-24 md:pt-0">
+        <div id="hero-content" class="relative z-10 space-y-4 md:space-y-6 max-w-4xl mx-auto pt-10 md:pt-20">
+            <p class="cursive-title text-5xl md:text-7xl opacity-90 tracking-widest mb-6 md:mb-12 transform -rotate-2">Club Yata
                 Performer</p>
-            <h1 class="jp-font text-[#d4af37] text-2xl md:text-3xl font-light tracking-[0.15em] leading-[2]">
+            <h1 class="jp-font text-[#d4af37] text-2xl md:text-3xl font-light tracking-[0.15em] leading-[2] pb-10 md:pb-0">
                 CLUB YATAのひと時をより一層<br class="md:hidden">上質なものへと昇華させる、<br>
                 美しい旋律の生演奏
             </h1>
-            <p
-                class="jp-font text-white/70 text-[10px] md:text-sm font-light tracking-[0.1em] leading-[2.6] max-w-2xl mx-auto pt-8">
-                CLUB YATAを彩る生演奏を担当する、個性豊かなパフォーマーたちのご紹介。<br>
-                ピアノ、フルート、バイオリンなど、プロのアーティストによる優雅で心地よい音楽が、特別な夜のひと時をご提供いたします。
-            </p>
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
-            <p
-                class="text-[11px] tracking-[0.5em] uppercase mb-4 vertical-text text-white font-medium scroll-text-anim">
-                scroll</p>
-            <div class="w-px h-16 bg-white/20 mx-auto relative overflow-hidden drop-shadow-lg">
-                <div
-                    class="w-full h-full bg-gradient-to-b from-[#d4af37] to-transparent absolute top-0 left-0 scroll-line-anim">
-                </div>
-            </div>
-        </div>
     </section>
 
+    <!-- Scroll indicator (Moved outside Hero to prevent overlap on short mobile screens) -->
+    <div class="absolute top-[85svh] md:top-auto md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-20 pointer-events-none pb-10 md:pb-0">
+        <p class="text-[11px] tracking-[0.5em] uppercase mb-4 vertical-text text-white font-medium scroll-text-anim">
+            scroll</p>
+        <div class="w-px h-16 bg-white/20 mx-auto relative overflow-hidden drop-shadow-lg">
+            <div
+                class="w-full h-full bg-gradient-to-b from-[#d4af37] to-transparent absolute top-0 left-0 scroll-line-anim">
+            </div>
+        </div>
+    </div>
+
     <!-- Artist Profiles Section -->
-    <section class="max-w-[1200px] mx-auto px-6 py-24 md:py-40 relative z-10">
+    <section class="max-w-[1200px] mx-auto px-6 py-24 md:py-40 relative z-10 overflow-hidden">
         <!-- Section Header -->
         <div class="text-center mb-32 fade-section">
             <h2 class="text-2xl md:text-3xl font-serif tracking-[0.3em] mb-8">ARTIST PROFILES</h2>
-            <p class="jp-font text-white/70 text-[10px] md:text-xs tracking-widest leading-loose">
+            <p class="jp-font text-white/70 text-[10px] md:text-xs tracking-widest leading-loose mb-6">
                 CLUB YATAでご案内を聞かせる個性豊かなパフォーマーをご紹介します。<br>
                 ピアノ・演奏・ボーカル
+            </p>
+            <p class="jp-font text-white/70 text-[10px] md:text-xs font-light tracking-[0.1em] leading-loose max-w-2xl mx-auto w-[95%]">
+                ピアノ、フルート、バイオリンなど、プロのアーティストによる優雅で心地よい音楽が、特別な夜のひと時をご提供いたします。
             </p>
         </div>
 
@@ -280,7 +133,7 @@
                 <div class="w-full md:w-[45%] flex justify-center md:justify-end img-container z-10">
                     <div class="w-[65%] max-w-[280px] aspect-[9/16] performer-card group">
                         <!-- Unsplash Singer Placeholder -->
-                        <img src="img/五十嵐 あきこ.jpg"
+                        <img src="../img/五十嵐 あきこ.jpg"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             alt="五十嵐 美沙子">
                         <div class="performer-name-overlay flex items-center justify-between">
@@ -291,7 +144,7 @@
                 </div>
                 <!-- Text Container -->
                 <div class="w-full md:w-[55%] relative flex items-center text-content min-h-[300px]">
-                    <img src="img/japanese-maple-leaves-3978208_1280.jpg"
+                    <img src="../img/japanese-maple-leaves-3978208_1280.jpg"
                         class="absolute -right-[10%] top-1/2 -translate-y-[40%] w-[130%] max-w-[700px] leaf-decor opacity-50 contrast-125 hover:opacity-70 transition-opacity duration-1000 object-cover pointer-events-none filter grayscale-[20%] sepia-[30%] hue-rotate-[-30deg]">
                     <div class="relative z-10 jp-font w-full">
                         <h3 class="text-lg md:text-xl tracking-[0.4em] font-light mb-4">五十嵐 美沙子</h3>
@@ -309,7 +162,7 @@
                                         class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
                                 </span>
                             </button>
-                            <div class="accordion-content overflow-hidden text-left h-0">
+                            <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
                                 <div
                                     class="pt-6 pb-2 text-white/70 text-[11px] md:text-[13px] leading-[2.4] tracking-widest font-extralight break-words w-full px-2">
                                     幼少の頃よりクラッシックバレエを習い、音楽と共に表現することに興味を持つ。<br>
@@ -329,7 +182,7 @@
                 <div class="w-full md:w-[45%] flex justify-center md:justify-start img-container z-10">
                     <div class="w-[65%] max-w-[280px] aspect-[9/16] performer-card group">
                         <!-- Unsplash Violinist Placeholder -->
-                        <img src="img/鈴木 琴子.jpg"
+                        <img src="../img/鈴木 琴子.jpg"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             alt="鈴木 琴子">
                         <div class="performer-name-overlay flex items-center justify-between">
@@ -340,7 +193,7 @@
                 </div>
                 <!-- Text Container -->
                 <div class="w-full md:w-[55%] relative flex flex-col justify-center text-content min-h-[300px]">
-                    <img src="img/japanese-maple-leaves-3978208_1280.jpg"
+                    <img src="../img/japanese-maple-leaves-3978208_1280.jpg"
                         class="absolute -left-[30%] top-1/2 -translate-y-[60%] w-[130%] max-w-[700px] leaf-decor opacity-40 transform -scale-x-100 contrast-125 hover:opacity-70 transition-opacity duration-1000 pointer-events-none filter grayscale-[20%] sepia-[30%] hue-rotate-[-30deg]">
                     <div class="relative z-10 jp-font w-full text-right">
                         <h3 class="text-lg md:text-xl tracking-[0.4em] font-light mb-4 text-right">鈴木 琴子</h3>
@@ -358,7 +211,7 @@
                                         class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
                                 </span>
                             </button>
-                            <div class="accordion-content overflow-hidden text-right h-0">
+                            <div class="accordion-content overflow-hidden text-right h-0 transition-[height] duration-500 ease-in-out">
                                 <div
                                     class="pt-6 pb-2 text-white/70 text-[11px] md:text-[13px] leading-[2.4] tracking-widest font-extralight break-words w-full px-2">
                                     東京音楽大学を経て同大学院修士課程修了。<br>
@@ -377,7 +230,7 @@
                 <div class="w-full md:w-[45%] flex justify-center md:justify-end img-container z-10">
                     <div class="w-[65%] max-w-[280px] aspect-[9/16] performer-card group">
                         <!-- Unsplash Vocal/Pianist Placeholder -->
-                        <img src="img/菅 涼子.jpg"
+                        <img src="../img/菅 涼子.jpg"
                             class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-700"
                             alt="森本 静香">
                         <div class="performer-name-overlay flex items-center justify-between">
@@ -388,7 +241,7 @@
                 </div>
                 <!-- Text Container -->
                 <div class="w-full md:w-[55%] relative flex items-center text-content min-h-[300px]">
-                    <img src="img/japanese-maple-leaves-3978208_1280.jpg"
+                    <img src="../img/japanese-maple-leaves-3978208_1280.jpg"
                         class="absolute -right-[10%] top-[40%] -translate-y-1/2 w-[110%] max-w-[650px] leaf-decor opacity-45 contrast-125 rotate-12 hover:opacity-70 transition-opacity duration-1000 pointer-events-none filter grayscale-[20%] sepia-[30%] hue-rotate-[-30deg]">
                     <div class="relative z-10 jp-font w-full">
                         <h3 class="text-lg md:text-xl tracking-[0.4em] font-light mb-4">森本 静香</h3>
@@ -406,7 +259,7 @@
                                         class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
                                 </span>
                             </button>
-                            <div class="accordion-content overflow-hidden text-left h-0">
+                            <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
                                 <div
                                     class="pt-6 pb-2 text-white/70 text-[11px] md:text-[13px] leading-[2.4] tracking-widest font-extralight break-words w-full px-2">
                                     3歳でピアノ、11歳でフルートと声楽を始める。<br>
@@ -430,7 +283,7 @@
                 <div class="w-full md:w-[45%] flex justify-center md:justify-start img-container z-10">
                     <div class="w-[65%] max-w-[280px] aspect-[9/16] performer-card group">
                         <!-- Unsplash Jazz Player Placeholder -->
-                        <img src="img/國井 類.jpg"
+                        <img src="../img/國井 類.jpg"
                             class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-700"
                             alt="藤井 健次">
                         <div class="performer-name-overlay flex items-center justify-between">
@@ -441,7 +294,7 @@
                 </div>
                 <!-- Text Container -->
                 <div class="w-full md:w-[55%] relative flex flex-col justify-center text-content min-h-[300px]">
-                    <img src="img/japanese-maple-leaves-3978208_1280.jpg"
+                    <img src="../img/japanese-maple-leaves-3978208_1280.jpg"
                         class="absolute -left-[40%] top-[60%] -translate-y-1/2 w-[120%] max-w-[650px] leaf-decor opacity-50 transform -scale-x-100 -rotate-12 contrast-125 hover:opacity-70 transition-opacity duration-1000 pointer-events-none filter grayscale-[20%] sepia-[30%] hue-rotate-[-30deg]">
                     <div class="relative z-10 jp-font w-full text-right">
                         <h3 class="text-lg md:text-xl tracking-[0.4em] font-light mb-4 text-right">藤井 健次</h3>
@@ -459,7 +312,7 @@
                                         class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
                                 </span>
                             </button>
-                            <div class="accordion-content overflow-hidden text-right h-0">
+                            <div class="accordion-content overflow-hidden text-right h-0 transition-[height] duration-500 ease-in-out">
                                 <div
                                     class="pt-6 pb-2 text-white/70 text-[11px] md:text-[13px] leading-[2.4] tracking-widest font-extralight break-words w-full px-2">
                                     1973年5月23日生まれA型、ふたご座。高校よりサックスを始める。<br>
@@ -482,7 +335,7 @@
                 <div class="w-full md:w-[45%] flex justify-center md:justify-end img-container z-10">
                     <div class="w-[65%] max-w-[280px] aspect-[9/16] performer-card group">
                         <!-- Unsplash Pianist Placeholder -->
-                        <img src="img/小松 都代子.jpg"
+                        <img src="../img/小松 都代子.jpg"
                             class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-700"
                             alt="小松崎 彩子">
                         <div class="performer-name-overlay flex items-center justify-between">
@@ -493,7 +346,7 @@
                 </div>
                 <!-- Text Container -->
                 <div class="w-full md:w-[55%] relative flex items-center text-content min-h-[300px]">
-                    <img src="img/japanese-maple-leaves-3978208_1280.jpg"
+                    <img src="../img/japanese-maple-leaves-3978208_1280.jpg"
                         class="absolute -right-[15%] top-[70%] -translate-y-1/2 w-[130%] max-w-[700px] leaf-decor opacity-40 contrast-125 rotate-[15deg] hover:opacity-70 transition-opacity duration-1000 pointer-events-none filter grayscale-[20%] sepia-[30%] hue-rotate-[-30deg]">
                     <div class="relative z-10 jp-font w-full">
                         <h3 class="text-lg md:text-xl tracking-[0.4em] font-light mb-4">小松崎 彩子</h3>
@@ -511,7 +364,7 @@
                                         class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
                                 </span>
                             </button>
-                            <div class="accordion-content overflow-hidden text-left h-0">
+                            <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
                                 <div
                                     class="pt-6 pb-2 text-white/70 text-[11px] md:text-[13px] leading-[2.4] tracking-widest font-extralight break-words w-full px-2">
                                     電子オルガン科出身で、作詞作曲に興味を持ち、ピアノも弾くように。<br>
@@ -551,150 +404,50 @@
 
         <div class="border-t border-white/5 mx-auto max-w-[1400px]"></div>
 
-        <div
-            class="max-w-[1400px] mx-auto px-8 md:px-20 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-xs md:text-sm jp-font font-extralight tracking-widest text-white/50">
-            <!-- Left: Logo & Address -->
-            <div>
-                <div class="text-white mb-6 flex flex-col">
-                    <img src="/img/logo.png" alt="CLUB YATA" class="w-16 mb-4 filter brightness-0 invert opacity-60">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-0 py-12 md:py-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 text-center md:text-left jp-font font-light tracking-widest text-[#e0e0e0] text-[10px] md:text-xs leading-loose">
+            
+            <!-- Column 1: Logo -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="block w-20 md:w-24">
+                    <img src="../img/logo.png" alt="CLUB YATA Logo" class="w-full h-auto">
+                </a>
+            </div>
+
+            <!-- Column 2: Info (営業時間, 住所) -->
+            <div class="flex-1 max-w-[320px]">
+                <div class="mb-4">
+                    <p>営業時間</p>
+                    <p>19:00〜00:00 / 定休日：不定休</p>
                 </div>
-                <div class="space-y-2 leading-loose">
-                    <p>営業時間<br>20:00 - 01:00 (L.O. 24:30)</p>
-                    <p>定休日<br>日曜日・祝日 (Holiday: Sun/Holidays)</p>
+                <div>
+                    <p>住所</p>
+                    <p>岡山県岡山市北区本町8-16 本町</p>
+                    <p>プラザ2F</p>
                 </div>
             </div>
 
-            <!-- Middle: Address Detail -->
-            <div class="space-y-2 leading-loose pt-12 md:pt-0">
-                <p>〒XXX-XXXX</p>
-                <p>東京都〇〇区〇〇 1-2-3</p>
-                <p>ビル名 5F</p>
+            <!-- Column 3: Links -->
+            <div class="flex flex-col space-y-2 uppercase">
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">POLICIES</a>
             </div>
 
-            <!-- Right: Contact -->
-            <div class="space-y-4 pt-12 md:pt-0">
-                <p>TEL: <span class="font-serif">03-XXXX-XXXX</span></p>
-                <p>MAIL: <span class="font-serif">info@clubyata.com</span></p>
-                <div class="flex gap-4 pt-4">
-                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-white transition-colors">Line</a>
+            <!-- Column 4: Phone & Copyright -->
+            <div class="flex flex-col items-center md:items-end justify-between self-stretch">
+                <div class="mb-4 md:mb-0 text-center md:text-right">
+                    <p class="uppercase text-[9px] mb-1">Telephone :</p>
+                    <p class="font-serif text-sm md:text-base tracking-widest whitespace-nowrap">087-822-7567</p>
+                </div>
+                <div class="mt-auto pt-6 text-[9px] text-[#e0e0e0]/50 uppercase font-serif">
+                    Copyright 2024 CLUBYATA . Terms & Privacy
                 </div>
             </div>
-        </div>
 
-        <div
-            class="text-center py-6 border-t border-white/5 text-[9px] tracking-[0.2em] font-serif text-white/30 uppercase">
-            © 2024 CLUB YATA. All rights reserved.
         </div>
     </footer>
 
-    <script>
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            touchMultiplier: 2,
-            infinite: false,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => {
-                lenis.raf(time * 1000);
-            });
-            gsap.ticker.lagSmoothing(0, 0);
-
-            const cursor = document.getElementById('cursor');
-            const cursorFollower = document.getElementById('cursor-follower');
-
-            if (window.innerWidth > 768) {
-                gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-                gsap.set(cursorFollower, { xPercent: -50, yPercent: -50 });
-
-                let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-                let followerX = window.innerWidth / 2, followerY = window.innerHeight / 2;
-
-                window.addEventListener('mousemove', e => {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.1, ease: "power2.out" });
-                });
-
-                gsap.ticker.add(() => {
-                    followerX += (mouseX - followerX) * 0.15;
-                    followerY += (mouseY - followerY) * 0.15;
-                    gsap.set(cursorFollower, { x: followerX, y: followerY });
-                });
-
-                const hoverTags = document.querySelectorAll('a, button, .menu-link');
-                hoverTags.forEach(tag => {
-                    tag.addEventListener('mouseenter', () => {
-                        gsap.to(cursor, { scale: 3, opacity: 0.5, duration: 0.3 });
-                        gsap.to(cursorFollower, { scale: 1.5, borderColor: 'transparent', backgroundColor: 'rgba(212, 175, 55, 0.2)', duration: 0.3 });
-                    });
-                    tag.addEventListener('mouseleave', () => {
-                        gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
-                        gsap.to(cursorFollower, { scale: 1, borderColor: '#d4af37', backgroundColor: 'transparent', duration: 0.3 });
-                    });
-                });
-            }
-
-            const menuBtn = document.getElementById('menu-btn');
-            const closeBtn = document.getElementById('close-menu-btn');
-            const menuOverlay = document.getElementById('fullscreen-menu');
-            const menuLinks = document.querySelectorAll('.menu-link');
-
-            let menuTl = gsap.timeline({ paused: true });
-            menuTl.to(menuOverlay, { opacity: 1, duration: 0.4, ease: "power2.inOut" })
-                .from(menuLinks, { x: 50, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power3.out" }, "-=0.2");
-
-            menuBtn.addEventListener('click', () => {
-                menuOverlay.classList.add('active');
-                menuTl.play();
-                lenis.stop();
-            });
-
-            closeBtn.addEventListener('click', () => {
-                menuTl.reverse().then(() => {
-                    menuOverlay.classList.remove('active');
-                    lenis.start();
-                });
-            });
-
-            const tl = gsap.timeline();
-
-            tl.from("nav, #menu-btn", { y: -30, opacity: 0, duration: 1.2, ease: "power2.out", clearProps: "all" })
-                .from("#hero-content > *", { y: 30, opacity: 0, stagger: 0.2, duration: 1.2, ease: "power3.out" }, "-=0.8");
-
-            // Accordion Logic
-            const accordions = document.querySelectorAll('.accordion-header');
-            accordions.forEach(acc => {
-                acc.addEventListener('click', function () {
-                    const content = this.nextElementSibling;
-                    const verticalLine = this.querySelector('.acc-vertical');
-
-                    this.classList.toggle('active');
-
-                    if (this.classList.contains('active')) {
-                        gsap.to(content, { height: 'auto', duration: 0.5, ease: 'power2.out' });
-                        gsap.to(verticalLine, { rotate: 0, duration: 0.3 });
-                        setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh() }, 500);
-                    } else {
-                        gsap.to(content, { height: 0, duration: 0.4, ease: 'power2.inOut' });
-                        gsap.to(verticalLine, { rotate: 90, duration: 0.3 });
-                        setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh() }, 400);
-                    }
-                });
-            });
-        }
-    </script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
