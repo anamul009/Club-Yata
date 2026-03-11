@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUB YATA | Luxury Live Music</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="bg-[#03080b]">
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-3 h-3 bg-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
+        style="pointer-events: none;"></div>
+    <div id="cursor-follower"
+        class="fixed w-10 h-10 border border-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
+        style="pointer-events: none;"></div>
+
+    <div class="master-bg"></div>
+
+    <!-- Full Screen Menu -->
+    <div id="fullscreen-menu" class="nav-overlay">
+        <button id="close-menu-btn"
+            class="absolute top-8 right-8 md:right-12 text-white hover:text-[#d4af37] transition-colors p-2 flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="absolute top-8 left-8 md:left-12 w-28 md:w-64 pt-2">
+            <img src="../img/logo.png" alt="CLUB YATA" class="w-full">
+        </div>
+
+        <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
+            <li><a href="index.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="concept.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="floor.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">FLOOR<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="performer.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">PERFORMER<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="menu.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="contact.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT
+                    US<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="absolute z-50 top-0 w-full px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+        <div class="w-28 md:w-64 pointer-events-auto">
+            <a href="index.html">
+                <img src="../img/logo.png" alt="YATA" class="w-full">
+            </a>
+        </div>
+    </nav>
+    <button id="menu-btn" class="fixed z-50 top-8 right-8 md:right-12 flex flex-col gap-[6px] p-2 group">
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+    </button>
+
+    <!-- Side Follow Us Text -->
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto">
+        <span class="vertical-text text-[9px] tracking-[0.5em] uppercase opacity-40">Follow us —</span>
+        <div class="flex flex-col gap-6 opacity-40 text-[9px]">
+            <a href="#" class="hover:text-[#d4af37] transition-colors">IG</a>
+            <a href="#" class="hover:text-[#d4af37] transition-colors">TW</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex flex-col justify-center px-8 md:px-[15%]">
+        <div id="hero-content" class="relative z-10 space-y-8 max-w-2xl">
+            <h2 class="golden-text text-xl md:text-2xl tracking-[0.4em] font-medium uppercase drop-shadow-lg">“CLUB
+                YATA”</h2>
+            <h1 class="text-4xl md:text-6xl font-light tracking-wide leading-tight drop-shadow-2xl">
+                Luxury Time Played With<br>
+                <span class="italic font-serif opacity-90">Live Music</span>
+            </h1>
+            <div class="pt-8">
+                <div class="flex items-center gap-4 jp-font text-xs tracking-widest font-light text-white/50">
+                    <span class="w-8 h-px bg-white/30"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
+            <p
+                class="text-[11px] tracking-[0.5em] uppercase mb-4 vertical-text text-white font-medium scroll-text-anim">
+                scroll</p>
+            <div class="w-px h-16 bg-white/20 mx-auto relative overflow-hidden drop-shadow-lg">
+                <div
+                    class="w-full h-full bg-gradient-to-b from-[#d4af37] to-transparent absolute top-0 left-0 scroll-line-anim">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections Wrapper to restrict width -->
+    <div class="max-w-[1400px] mx-auto w-full">
+
+        <!-- Section 01: Service -->
+        <section class="relative py-24 md:py-40 px-6 md:px-20 fade-section">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center relative z-10 pl-0 md:pl-20">
+                <!-- Text Left -->
+                <div class="space-y-8 order-2 md:order-1 relative z-10 text-content">
+                    <div class="absolute -top-32 -left-10 md:-left-20">
+                        <span class="section-number-bg">01</span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <h4 class="golden-text text-[10px] tracking-[0.6em] uppercase">SERVICE</h4>
+                    </div>
+                    <h3 class="jp-font text-3xl md:text-4xl font-light tracking-[0.1em] leading-relaxed break-words">
+                        どこよりも質の高い<br class="hidden md:block">サービス
+                    </h3>
+                    <p
+                        class="jp-font text-white/60 text-sm leading-[2.4] max-w-sm font-extralight tracking-widest break-words">
+                        CLUB YATAはスタッフの教育とサービスの質に力を入れています。心地よい空間をより上質なものにするため、きめ細やかなおもてなしの心で、みなさまを特別にお迎えいたします。
+                    </p>
+                    <div class="pt-4">
+                        <a href="#"
+                            class="inline-flex items-center gap-4 text-white text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors group">
+                            read more <span
+                                class="w-8 h-[1px] bg-white/50 group-hover:bg-[#d4af37] group-hover:w-12 transition-all"></span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Image Right -->
+                <div class="relative order-1 md:order-2 img-container">
+                    <div class="img-mask bg-white/5 p-1 rounded-[40px] aspect-[4/3] md:aspect-[5/4]">
+                        <!-- Placeholder for whisky/glass image -->
+                        <div
+                            class="w-full h-full bg-[#111] rounded-[36px] overflow-hidden relative border border-white/10">
+                            <img src="../img/service.jpg" class="w-full h-full object-cover opacity-80"
+                                alt="Service Drinks"
+                                onerror="this.src='https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 02: Music -->
+        <section class="relative py-24 md:py-40 px-6 md:px-20 fade-section">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center relative z-10 pr-0 md:pr-20">
+                <!-- Image Left -->
+                <div class="relative img-container">
+                    <div class="img-mask bg-white/5 p-1 rounded-[40px] aspect-[3/4] md:w-[80%] mx-auto md:ml-0">
+                        <!-- Placeholder for flute player image -->
+                        <div
+                            class="w-full h-full bg-[#111] rounded-[36px] overflow-hidden relative border border-white/10">
+                            <img src="../img/music.jpg" class="w-full h-full object-cover opacity-80"
+                                alt="Live Music Performance"
+                                onerror="this.src='https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&q=80'">
+                        </div>
+                    </div>
+                </div>
+                <!-- Text Right -->
+                <div class="space-y-8 relative z-10 text-content">
+                    <div class="absolute -top-32 -left-10">
+                        <span class="section-number-bg">02</span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <h4 class="golden-text text-[10px] tracking-[0.6em] uppercase">LIVE MUSIC</h4>
+                    </div>
+                    <h3 class="jp-font text-3xl md:text-4xl font-light tracking-[0.1em] leading-relaxed break-words">
+                        心安らぐ生演奏の<br class="hidden md:block">音色
+                    </h3>
+                    <p
+                        class="jp-font text-white/60 text-sm leading-[2.4] max-w-sm font-extralight tracking-widest break-words">
+                        ピアノ、フルート、バイオリンなど、プロの演奏家による心地よい調べ。非日常の空間を、より深く、より美しく彩る音のシャワーをお楽しみいただけます。
+                    </p>
+                    <div class="pt-4">
+                        <a href="#"
+                            class="inline-flex items-center gap-4 text-white text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors group">
+                            read more <span
+                                class="w-8 h-[1px] bg-white/50 group-hover:bg-[#d4af37] group-hover:w-12 transition-all"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 03: Space -->
+        <section class="relative py-24 md:py-40 px-6 md:px-20 fade-section">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center relative z-10 pl-0 md:pl-20">
+                <!-- Text Left -->
+                <div class="space-y-8 order-2 md:order-1 relative z-10 text-content">
+                    <div class="absolute -top-32 -left-10 md:-left-20">
+                        <span class="section-number-bg">03</span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <h4 class="golden-text text-[10px] tracking-[0.6em] uppercase">SPACE</h4>
+                    </div>
+                    <h3 class="jp-font text-3xl md:text-4xl font-light tracking-[0.1em] leading-relaxed">
+                        上質な空間
+                    </h3>
+                    <p
+                        class="jp-font text-white/60 text-sm leading-[2.4] max-w-sm font-extralight tracking-widest break-words">
+                        洗練されたインテリア、暖かな照明、そして静かに響く音楽。日々の喧騒を忘れ、心からくつろいでいただける、大人のための特別な空間をご用意しております。
+                    </p>
+                    <div class="pt-4">
+                        <a href="#"
+                            class="inline-flex items-center gap-4 text-white text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors group">
+                            read more <span
+                                class="w-8 h-[1px] bg-white/50 group-hover:bg-[#d4af37] group-hover:w-12 transition-all"></span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Image Right -->
+                <div class="relative order-1 md:order-2 img-container flex justify-end">
+                    <div class="img-mask bg-white/5 p-1 rounded-[40px] aspect-[4/3] md:w-[80%]">
+                        <!-- Placeholder for interior photo -->
+                        <div
+                            class="w-full h-full bg-[#111] rounded-[36px] overflow-hidden relative border border-white/10">
+                            <img src="../img/space.jpg" class="w-full h-full object-cover opacity-80" alt="Club Interior"
+                                onerror="this.src='https://images.unsplash.com/photo-1560624052-449f5ddf0c31?auto=format&fit=crop&q=80'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> <!-- End Constrained Wrapper -->
+
+    <!-- Message Section -->
+    <section class="py-32 px-6 text-center relative overflow-hidden fade-section">
+        <div class="relative z-10 max-w-3xl mx-auto space-y-16">
+            <h3 class="jp-font text-2xl md:text-3xl font-light tracking-[0.2em] leading-loose">
+                品格と優雅さの中に安らぎと笑顔を
+            </h3>
+
+            <div class="flex items-center justify-center gap-4">
+                <span class="w-12 h-[1px] bg-[#d4af37]/50"></span>
+            </div>
+
+            <p class="jp-font text-white/70 text-sm md:text-base leading-[2.6] font-extralight tracking-widest">
+                CLUB YATAはすべての皆様に、最上のひとときをご提供したい<br class="hidden md:block">
+                と考えております。美しい音楽と美酒に酔いしれながら、<br class="hidden md:block">
+                心からリラックスできる至福の時間を、どうぞごゆっくり<br class="hidden md:block">
+                お過ごしくださいませ。
+            </p>
+
+            <div class="pt-8">
+                <a href="#"
+                    class="inline-flex items-center gap-4 text-white text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors group">
+                    view more <span
+                        class="w-8 h-[1px] bg-white/50 group-hover:bg-[#d4af37] group-hover:w-12 transition-all"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice / News Section -->
+    <section class="py-24 px-6 md:px-20 max-w-[1000px] mx-auto fade-section relative z-10">
+        <div class="text-center mb-16">
+            <h3 class="text-3xl font-light tracking-[0.3em] font-serif uppercase">Notice</h3>
+        </div>
+
+        <p class="jp-font text-white/60 text-xs md:text-sm tracking-widest text-center mb-12">
+            新しい演奏者のスケジュールや、季節の限定メニューなどをお知らせいたします。
+        </p>
+
+        <div class="space-y-6 border-t border-white/10 pt-8">
+            <!-- Notice Item 1 -->
+            <a href="#"
+                class="flex flex-col md:flex-row items-baseline gap-4 md:gap-12 pb-6 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                <span class="font-serif text-sm tracking-widest w-32 shrink-0">2024.12.01</span>
+                <span
+                    class="jp-font text-sm tracking-widest font-extralight group-hover:translate-x-2 transition-transform">年末年始の営業について</span>
+                <span class="ml-auto text-[10px] hidden md:block">→</span>
+            </a>
+            <!-- Notice Item 2 -->
+            <a href="#"
+                class="flex flex-col md:flex-row items-baseline gap-4 md:gap-12 pb-6 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                <span class="font-serif text-sm tracking-widest w-32 shrink-0">2024.11.15</span>
+                <span
+                    class="jp-font text-sm tracking-widest font-extralight group-hover:translate-x-2 transition-transform">12月の演奏スケジュールを更新しました</span>
+                <span class="ml-auto text-[10px] hidden md:block">→</span>
+            </a>
+            <!-- Notice Item 3 -->
+            <a href="#"
+                class="flex flex-col md:flex-row items-baseline gap-4 md:gap-12 pb-6 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                <span class="font-serif text-sm tracking-widest w-32 shrink-0">2024.10.20</span>
+                <span
+                    class="jp-font text-sm tracking-widest font-extralight group-hover:translate-x-2 transition-transform">秋の限定・響ブレンドカクテル開始</span>
+                <span class="ml-auto text-[10px] hidden md:block">→</span>
+            </a>
+        </div>
+
+        <div class="text-right mt-8">
+            <a href="#"
+                class="inline-flex items-center gap-4 text-white text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors group">
+                view all <span
+                    class="w-8 h-[1px] bg-white/50 group-hover:bg-[#d4af37] group-hover:w-12 transition-all"></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Map & Footer -->
+    <!-- Minimal Footer -->
+    <footer class="relative z-10 w-full px-6 md:px-[6%] py-12 md:py-20 bg-[#03080b]/90 border-t border-white/10 mt-10">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 text-center md:text-left jp-font font-light tracking-widest text-[#e0e0e0] text-[10px] md:text-xs leading-loose">
+            
+            <!-- Column 1: Logo -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="block w-20 md:w-24">
+                    <img src="../img/logo.png" alt="CLUB YATA Logo" class="w-full h-auto">
+                </a>
+            </div>
+
+            <!-- Column 2: Info (営業時間, 住所) -->
+            <div class="flex-1 max-w-[320px]">
+                <div class="mb-4">
+                    <p>営業時間</p>
+                    <p>19:00〜00:00 / 定休日：不定休</p>
+                </div>
+                <div>
+                    <p>住所</p>
+                    <p>岡山県岡山市北区本町8-16 本町</p>
+                    <p>プラザ2F</p>
+                </div>
+            </div>
+
+            <!-- Column 3: Links -->
+            <div class="flex flex-col space-y-2 uppercase">
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">POLICIES</a>
+            </div>
+
+            <!-- Column 4: Phone & Copyright -->
+            <div class="flex flex-col items-center md:items-end justify-between self-stretch">
+                <div class="mb-4 md:mb-0 text-center md:text-right">
+                    <p class="uppercase text-[9px] mb-1">Telephone :</p>
+                    <p class="font-serif text-sm md:text-base tracking-widest whitespace-nowrap">087-822-7567</p>
+                </div>
+                <div class="mt-auto pt-6 text-[9px] text-[#e0e0e0]/50 uppercase font-serif">
+                    Copyright 2024 CLUBYATA . Terms & Privacy
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
