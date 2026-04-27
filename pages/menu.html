@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENU | CLUB YATA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="bg-[#03080b]">
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-3 h-3 bg-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
+        style="pointer-events: none;"></div>
+    <div id="cursor-follower"
+        class="fixed w-10 h-10 border border-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
+        style="pointer-events: none;"></div>
+
+    <div class="menu-hero-bg"></div>
+
+    <!-- Full Screen Menu -->
+    <div id="fullscreen-menu" class="nav-overlay">
+        <button id="close-menu-btn"
+            class="absolute top-8 right-8 md:right-12 text-white hover:text-[#d4af37] transition-colors p-2 flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="absolute top-8 left-8 md:left-12 w-28 md:w-64 pt-2">
+            <img src="../img/logo.png" alt="CLUB YATA" class="w-full">
+        </div>
+
+        <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
+            <li><a href="../index.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="concept.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="floor.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">FLOOR<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="performer.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">PERFORMER<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="menu.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="contact.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT US<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="absolute z-50 top-0 w-full px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+        <div class="w-28 md:w-64 pointer-events-auto">
+            <a href="../index.html">
+                <img src="../img/logo.png" alt="YATA" class="w-full">
+            </a>
+        </div>
+    </nav>
+    <button id="menu-btn" class="fixed z-50 top-8 right-8 md:right-12 flex flex-col gap-[6px] p-2 group">
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+    </button>
+
+    <!-- Side Follow Us Text -->
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto vertical-text-container">
+        <span class="vertical-text text-[9px] tracking-[0.5em] uppercase opacity-40">Follow us —</span>
+        <div class="flex flex-col gap-6 opacity-40 text-[9px]">
+            <a href="https://www.instagram.com/clubyata_okayama/" target="_blank" rel="noopener noreferrer" class="hover:text-[#d4af37] transition-colors">IG</a>
+            <a href="#" class="hover:text-[#d4af37] transition-colors">TW</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex flex-col justify-center px-8 md:px-[15%] text-center fade-section">
+        <div id="hero-content" class="relative z-10 space-y-6 max-w-4xl mx-auto pt-20">
+            <p class="cursive-title text-4xl md:text-5xl opacity-90 tracking-[0.2em] mb-8 mx-auto inline-block md:w-max md:whitespace-nowrap">MENU & CHARGE</p>
+            <h1 class="jp-font text-[#d4af37] text-2xl md:text-3xl font-light tracking-[0.1em] leading-[1.8] mb-8">
+                A refined moment and gentle conversation.<br>
+                Always accompanied by your favorite drink.
+            </h1>
+            <p class="jp-font text-white/70 text-[10px] md:text-xs font-light tracking-[0.1em] leading-[2.6] max-w-2xl mx-auto pt-4 shadow-black drop-shadow-lg">
+                CLUB YATAでは様々なメニューをご用意しております。好みの極上ワイン、シャンパン、<br class="hidden md:block">
+                ウイスキーなどをご用意しております。お客様の好みに合ったご満足いただけるよう<br class="hidden md:block">
+                シンプルながら洗練されたドリンクをご用意しておりますので、どうぞお申し付けください。
+            </p>
+            
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
+            <p class="text-[11px] tracking-[0.5em] uppercase mb-4 vertical-text text-white font-medium scroll-text-anim">scroll</p>
+            <div class="w-px h-16 bg-white/20 mx-auto relative overflow-hidden drop-shadow-lg">
+                <div class="w-full h-full bg-gradient-to-b from-[#d4af37] to-transparent absolute top-0 left-0 scroll-line-anim"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections Wrapper -->
+    <div class="max-w-[1000px] mx-auto w-full px-6 pb-32">
+        
+        <!-- Charge CTA & Accordion Moved Below Hero -->
+        <div class="pt-16 pb-12 flex flex-col items-center fade-section">
+            <a href="#" class="text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors pb-1 border-b border-white/20 hover:border-[#d4af37]">
+                CHARGE &gt;
+            </a>
+
+            <!-- Accordion -->
+            <div class="mt-8 mx-auto overflow-hidden w-full max-w-[500px]">
+                <div class="w-full h-[1px] bg-white/20 mb-2"></div>
+                <button class="accordion-header flex items-center justify-between w-full py-4 hover:text-[#d4af37] transition-colors group">
+                    <span class="text-[10px] tracking-[0.4em] font-sans uppercase">SYSTEM / CHARGE</span>
+                    <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                        <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                        <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical"></span>
+                    </span>
+                </button>
+                <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
+                    <div class="pt-6 pb-6 text-white/70 text-[11px] md:text-[13px] leading-[2.4] tracking-widest font-extralight break-words w-full px-4 border-t border-white/10">
+                        SET CHARGE: ¥11,000 / 60min<br>
+                        VIP ROOM: ¥22,000 / 60min<br>
+                        TAX/SERVICE: 20%<br><br>
+                        ※料金はすべて税込価格となっております。<br>
+                        ※ご予約のお客様を優先してご案内しております。
+                    </div>
+                </div>
+                <div class="w-full h-[1px] bg-white/20 mt-2"></div>
+            </div>
+        </div>
+
+    <!-- Content Sections Wrapper -->
+    <div class="max-w-[1000px] mx-auto w-full px-6 pb-32">
+
+        <!-- Wine List (Image Left, Text Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-1 transform md:-translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:ml-auto md:mr-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1585553616435-2dc0a54e271d?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Wine Corks">
+                        <div class="category-label">
+                            WINE > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-2 text-center md:text-left">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているワインリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        WINE LIST &gt;
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:mx-0">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2">
+                                <span class="text-[#d4af37] border-b border-[#d4af37]/30 pb-1 mb-2 inline-block">赤 (Red Wine)</span><br>
+                                シャトーラグランジュ<br>
+                                シーラーマルゴー<br>
+                                LLジュヴレシャンベルタン<br>
+                                シャトーカロンセギュール<br>
+                                ルシャンベルダン<br>
+                                オーパスワン<br>
+                                KENZO<br>
+                                ケンゾー エステイト：リンドウ<br>
+                                ケンゾー エステイト：ムラサキ<br>
+                                ケンゾー エステイト：アスカ<br>
+                                ケンゾー エステイト：アサツユ<br>
+                                ケンゾー エステイト：ユイ<br><br>
+                                <span class="text-[#d4af37] border-b border-[#d4af37]/30 pb-1 mb-2 inline-block">白 (White Wine)</span><br>
+                                ウィリアムフェーブル シャブリ<br>
+                                ウィリアムフェーブル プルミエクリュ ヴァイヨン<br>
+                                LLムルソー<br>
+                                ガヤ アルテ二 ディ ブラッシカ ソーヴィニョンブラン
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Champagne List (Text Left, Image Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-center md:text-right">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているシャンパンリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        CHAMPAGNE LIST &gt;
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:ml-auto md:mr-0 pl-0 md:pl-2">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0 transition-[height] duration-500 ease-in-out">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                ペリエ・ジェエ・ベルエポック フル<br>
+                                ペリエ・ジェエ・ベルエポック ロゼ<br>
+                                ペリエ・ジェエ・ブラン ド ブラン<br>
+                                ペリエ・ジェエ・ブラゾン ロゼ<br>
+                                クリュグ フル<br>
+                                クリュグ ハーフ<br>
+                                ローランペリエ ブリュット<br>
+                                ローランペリエ ロゼ<br>
+                                ローランペリエ クランシェクル<br>
+                                ローランペリエ アレキサンドラロゼ<br>
+                                ヴーヴ・クリコ フル<br>
+                                ヴーヴ・クリコ ハーフ<br>
+                                ニコラ・フィアット ブルーラベル<br>
+                                ニコラ・フィアット パルムドール<br>
+                                バロン・ド・ロスチャイルド フル<br>
+                                バロン・ド・ロスチャイルド ハーフ<br>
+                                ドンペリ ヴィンテージ(白)<br>
+                                ドンペリ ロゼヴィンテージ<br>
+                                アルマンドブリュット
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2 transform md:translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:mr-auto md:ml-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Champagne Glass">
+                        <div class="category-label">
+                            CHAMPAGNE > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Whisky List (Image Left, Text Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-1 transform md:-translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:ml-auto md:mr-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1527281400683-1aae777175f8?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Whisky Glass">
+                        <div class="category-label">
+                            WHISKY > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-2 text-center md:text-left">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているウイスキーリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        WHISKY LIST &gt;
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:mx-0">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                余市<br>
+                                知多<br>
+                                マッカラン 12年<br>
+                                マッカラン 18年<br>
+                                マッカラン<br>
+                                ファインオーク<br>
+                                バランタイン 17年<br>
+                                バランタイン 21年<br>
+                                シーバス 18年<br>
+                                シーバスミズナラ<br>
+                                オールドバー 12年<br>
+                                オールドバー 18年<br>
+                                メーカーズマーク<br>
+                                ジョニーウォーカーブルーラベル
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brandy List (Text Left, Image Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-center md:text-right">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているブランデーリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        BRANDY LIST &gt;
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:ml-auto md:mr-0 pl-0 md:pl-2">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0 transition-[height] duration-500 ease-in-out">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                ヘネシー VSOP<br>
+                                ヘネシー XO<br>
+                                ヘネシー パラディ<br>
+                                コルドンブルー<br>
+                                ポールジロー 25年
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2 transform md:translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:mr-auto md:ml-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1563223771-5fe4038fbfc9?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Brandy Glass">
+                        <div class="category-label">
+                            BRANDY > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bourbon List (Image Left, Text Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-1 transform md:-translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:ml-auto md:mr-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1615887023516-986064f26be8?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Bourbon Glasses">
+                        <div class="category-label">
+                            BOURBON > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-2 text-center md:text-left">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているバーボンリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        BOURBON LIST &gt;
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:mx-0">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left h-0 transition-[height] duration-500 ease-in-out">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                I.Wハーパーゴールド<br>
+                                I.Wハーパー 12年<br>
+                                フォアローゼスプラチナ<br>
+                                ワイルドターキー 8年
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Others List (Text Left, Image Right) -->
+        <section class="relative py-16 md:py-24 fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-center md:text-right">
+                    <h3 class="jp-font text-[13px] md:text-[15px] font-light tracking-[0.1em] text-white">
+                        CLUB YATAで取り扱っているその他のドリンクのリストです
+                    </h3>
+                    <a href="#" class="drink-list-title text-[10px] tracking-[0.3em] uppercase opacity-70 hover:opacity-100 hover:text-[#d4af37] hover:border-[#d4af37] transition-all">
+                        OTHERS LIST &gt;
+                    </a>
+                    
+                    <!-- Accordion -->
+                    <div class="mt-8 overflow-hidden w-full md:w-4/5 mx-auto md:ml-auto md:mr-0 pl-0 md:pl-2">
+                        <button class="accordion-header flex items-center justify-between w-full py-2 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                            <span class="text-[9px] tracking-[0.3em] font-sans uppercase">Details</span>
+                            <span class="relative w-3 h-3 flex items-center justify-center opacity-60">
+                                <span class="w-full h-px bg-current absolute transition-transform duration-300"></span>
+                                <span class="w-full h-px bg-current absolute rotate-90 transition-transform duration-300 acc-vertical group-[.active]:rotate-0"></span>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden text-left md:text-right h-0 transition-[height] duration-500 ease-in-out">
+                            <div class="pt-4 pb-2 text-white/70 text-[10px] md:text-sm leading-[2.4] tracking-widest font-light break-words w-full px-2 lg:columns-2 gap-8 text-left md:text-right">
+                                黒霧島<br>
+                                赤霧島<br>
+                                一刻者<br>
+                                黒甕<br>
+                                神の河<br>
+                                吉四六<br>
+                                いいちこフラスコ<br>
+                                いいちこスペシャル<br><br>
+                                <span class="text-[#d4af37] border-b border-[#d4af37]/30 pb-1 mb-2 inline-block">ビール、各種ソフトドリンクなど</span><br>
+                                ※詳しくはスタッフまでお尋ねください。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2 transform md:translate-y-6">
+                    <div class="category-card aspect-[3/4] w-2/3 md:w-3/4 mx-auto md:mr-auto md:ml-0 max-w-[300px]">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover category-img" alt="Other Drinks">
+                        <div class="category-label">
+                            OTHERS > <span class="glow-dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer & CTA -->
+    <!-- Minimal Footer -->
+    <footer class="relative z-10 w-full px-6 md:px-[6%] py-12 md:py-20 bg-[#03080b]/90 border-t border-white/10 mt-10">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 text-center md:text-left jp-font font-light tracking-widest text-[#e0e0e0] text-[10px] md:text-xs leading-loose">
+            
+            <!-- Column 1: Logo -->
+            <div class="flex-shrink-0">
+                <a href="../index.html" class="block w-32 md:w-44 lg:w-56">
+                    <img src="../img/logo.png" alt="CLUB YATA Logo" class="w-full h-auto">
+                </a>
+            </div>
+
+            <!-- Column 2: Info (営業時間, 住所) -->
+            <div class="flex-1 max-w-[320px]">
+                <div class="mb-4">
+                    <p>営業時間</p>
+                    <p>19:00〜00:00 / 定休日：不定休</p>
+                </div>
+                <div>
+                    <p>住所</p>
+                    <p>岡山県岡山市北区本町8-16 本町プラザ2F</p>
+                </div>
+            </div>
+
+            <!-- Column 3: Links -->
+            <div class="flex flex-col space-y-2 uppercase">
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Terms of Service</a>
+            </div>
+
+            <!-- Column 4: Phone & Copyright -->
+            <div class="flex flex-col items-center md:items-end justify-between self-stretch">
+                <div class="mb-4 md:mb-0 text-center md:text-right">
+                    <p class="uppercase text-[9px] mb-1">Telephone :</p>
+                    <p class="font-serif text-sm md:text-base tracking-widest whitespace-nowrap">
+                        <a href="tel:0878227567" class="hover:text-[#d4af37] transition-colors">087-822-7567</a>
+                    </p>
+                </div>
+                <div class="mt-auto pt-6 text-[9px] text-[#e0e0e0]/50 uppercase font-serif">
+                    © 2024 CLUB YATA . Privacy & Policy
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
+

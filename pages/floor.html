@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOOR | CLUB YATA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="bg-[#03080b]">
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-3 h-3 bg-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block" style="pointer-events: none;"></div>
+    <div id="cursor-follower" class="fixed w-10 h-10 border border-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block" style="pointer-events: none;"></div>
+
+    <!-- Backgrounds -->
+    <div class="floor-hero-bg"></div>
+    <div class="floral-bg" id="floral-bg"></div>
+
+    <!-- Full Screen Menu -->
+    <div id="fullscreen-menu" class="nav-overlay">
+        <button id="close-menu-btn" class="absolute top-8 right-8 md:right-12 text-white hover:text-[#d4af37] transition-colors p-2 flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="absolute top-8 left-8 md:left-12 w-28 md:w-64 pt-2">
+            <img src="../img/logo.png" alt="CLUB YATA" class="w-full">
+        </div>
+
+        <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
+            <li><a href="../index.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="concept.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="floor.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group text-[#d4af37]">FLOOR<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="performer.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">PERFORMER<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="menu.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="contact.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT US<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="absolute z-50 top-0 w-full px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+        <div class="w-28 md:w-64 pointer-events-auto">
+            <a href="../index.html">
+                <img src="../img/logo.png" alt="YATA" class="w-full">
+            </a>
+        </div>
+    </nav>
+    <button id="menu-btn" class="fixed z-50 top-8 right-8 md:right-12 flex flex-col gap-[6px] p-2 group">
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+    </button>
+
+    <!-- Side Follow Us Text -->
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto vertical-text-container">
+        <span class="vertical-text text-[9px] tracking-[0.5em] uppercase opacity-40">Follow us —</span>
+        <div class="flex flex-col gap-6 opacity-40 text-[9px]">
+            <a href="https://www.instagram.com/clubyata_okayama/" target="_blank" rel="noopener noreferrer" class="hover:text-[#d4af37] transition-colors">IG</a>
+            <a href="#" class="hover:text-[#d4af37] transition-colors">TW</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex flex-col justify-center px-8 md:px-[15%] text-center fade-section">
+        <div id="hero-content" class="relative z-10 space-y-6 max-w-4xl mx-auto pt-20">
+            <p class="cursive-title text-4xl md:text-5xl opacity-90 tracking-[0.2em] mb-12 mx-auto inline-block md:w-max md:whitespace-nowrap">FLOOR GUIDE</p>
+            <h1 class="jp-font text-[#d4af37] text-xl md:text-3xl font-light tracking-[0.1em] leading-[2] drop-shadow-lg">
+                Experience the essence of tranquility<br>
+                at CLUB YATA.
+            </h1>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
+            <p
+                class="text-[11px] tracking-[0.5em] uppercase mb-4 vertical-text text-white font-medium scroll-text-anim">
+                scroll</p>
+            <div class="w-px h-16 bg-white/20 mx-auto relative overflow-hidden drop-shadow-lg">
+                <div
+                    class="w-full h-full bg-gradient-to-b from-[#d4af37] to-transparent absolute top-0 left-0 scroll-line-anim">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Layout -->
+    <div class="relative z-10 w-full max-w-[1200px] mx-auto px-8 py-20 md:py-32 space-y-32 md:space-y-48">
+
+        <!-- VIP ROOM (Image Left) -->
+        <section class="relative fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2">
+                    <div class="capsule-card aspect-[4/3] w-full max-w-[500px] mx-auto md:ml-0 md:mr-auto">
+                        <img src="https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover capsule-img" alt="VIP Room">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-left px-4 md:px-0">
+                    <h2 class="font-sans font-bold text-white room-title">VIP ROOM</h2>
+                    <p class="jp-font font-light text-white/70 room-desc break-words">
+                        ゆったりとくつろげるVIPソファシートをご用意。<br>
+                        特別なゲストとのプライベートな時間や、大切なお祝いなど、<br>
+                        ワンランク上の上質なひとときをお過ごしいただけます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOX 04 (Image Right) -->
+        <section class="relative fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-left md:text-right px-4 md:px-0">
+                    <h2 class="font-sans font-bold text-white room-title">BOX 04</h2>
+                    <p class="jp-font font-light text-white/70 room-desc break-words">
+                        落ち着いた雰囲気のインテリアと柔らかな照明。<br>
+                        心地よい距離感で会話が弾む、少人数に最適なボックスシートです。<br>
+                        リラックスした時間をお約束いたします。
+                    </p>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <div class="capsule-card aspect-[4/3] w-full max-w-[500px] mx-auto md:mr-0 md:ml-auto">
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover capsule-img" alt="Box 04">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOX 01 (Image Left) -->
+        <section class="relative fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2">
+                    <div class="capsule-card aspect-[4/3] w-full max-w-[500px] mx-auto md:ml-0 md:mr-auto">
+                        <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover capsule-img" alt="Box 01">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-left px-4 md:px-0">
+                    <h2 class="font-sans font-bold text-white room-title">BOX 01</h2>
+                    <p class="jp-font font-light text-white/70 room-desc break-words">
+                        少人数からご利用いただけるラウンジスペース。<br>
+                        洗練されたアート作品とともに、穏やかな夜をお過ごしいただけます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOX 02 (Image Right) -->
+        <section class="relative fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-left md:text-right px-4 md:px-0">
+                    <h2 class="font-sans font-bold text-white room-title">BOX 02</h2>
+                    <p class="jp-font font-light text-white/70 room-desc break-words">
+                        洗練された空間と心地よいソファシート。<br>
+                        洗練された大人のための空間で、美味しいお酒とピアノの生演奏。<br>
+                        日常の喧騒から離れた贅沢な時間を提供いたします。
+                    </p>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <div class="capsule-card aspect-[4/3] w-full max-w-[500px] mx-auto md:mr-0 md:ml-auto">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover capsule-img" alt="Box 02">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOX 03 (Image Left) -->
+        <section class="relative fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2">
+                    <div class="capsule-card aspect-[4/3] w-full max-w-[500px] mx-auto md:ml-0 md:mr-auto">
+                        <img src="https://images.unsplash.com/photo-1560624052-449f5ddf0c31?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover capsule-img" alt="Box 03">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-left px-4 md:px-0">
+                    <h2 class="font-sans font-bold text-white room-title">BOX 03</h2>
+                    <p class="jp-font font-light text-white/70 room-desc break-words">
+                        ゆったりとくつろげる、広々としたボックスシート。<br>
+                        洗練されたしつらえの中で、時間を忘れて語り合えるような、<br>
+                        アットホームで温かみのある空間となっております。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 多人数用BOX席レイアウト01 (Image Right) -->
+        <section class="relative fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-left md:text-right px-4 md:px-0">
+                    <h2 class="font-sans font-bold text-white room-title">GROUP BOX 01</h2>
+                    <p class="jp-font font-light text-white/70 room-desc break-words">
+                        グループでのご利用に最適な、ゆとりあるボックスエリア。<br>
+                        お誕生日会や、歓送迎会など、華やかな夜のイベントに。<br>
+                        人数に合わせてフレキシブルに対応が可能です。
+                    </p>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <div class="capsule-card aspect-[4/3] w-full max-w-[500px] mx-auto md:mr-0 md:ml-auto">
+                        <img src="https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover capsule-img" alt="Group Box">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- VIP ROOM (Secondary Image Right) - based on the design screenshot having two VIP room blocks at bottom occasionally, but the screenshot has VIP ROOM then BOX 04 at bottom. Wait, looking at screenshot, the bottom has VIP ROOM (img left), BOX 04 (img right). The user provided a long flow. VIP, BOX04, BOX01, BOX02, BOX03, 多人数用BOX, VIP ROOM, BOX04. Let's add them to strictly match. -->
+        <section class="relative fade-section">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2">
+                    <div class="capsule-card aspect-[4/3] w-full max-w-[500px] mx-auto md:ml-0 md:mr-auto">
+                        <img src="https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover capsule-img" alt="VIP Room">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-left px-4 md:px-0">
+                    <h2 class="font-sans font-bold text-white room-title">VIP ROOM</h2>
+                    <p class="jp-font font-light text-white/70 room-desc break-words">
+                        ゆったりとくつろげるVIPソファシートをご用意。<br>
+                        特別なゲストとのプライベートな時間や、大切なお祝いなど、<br>
+                        ワンランク上の上質なひとときをお過ごしいただけます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOX 04 (Secondary Image Right) -->
+        <section class="relative fade-section pb-20">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1 text-left md:text-right px-4 md:px-0">
+                    <h2 class="font-sans font-bold text-white room-title">BOX 04</h2>
+                    <p class="jp-font font-light text-white/70 room-desc break-words">
+                        落ち着いた雰囲気のインテリアと柔らかな照明。<br>
+                        心地よい距離感で会話が弾む、少人数に最適なボックスシートです。<br>
+                        リラックスした時間をお約束いたします。
+                    </p>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <div class="capsule-card aspect-[4/3] w-full max-w-[500px] mx-auto md:mr-0 md:ml-auto">
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover capsule-img" alt="Box 04">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer & CTA -->
+    <!-- Minimal Footer -->
+    <footer class="relative z-10 w-full px-6 md:px-[6%] py-12 md:py-20 bg-[#03080b]/90 border-t border-white/10 mt-10">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 text-center md:text-left jp-font font-light tracking-widest text-[#e0e0e0] text-[10px] md:text-xs leading-loose">
+            
+            <!-- Column 1: Logo -->
+            <div class="flex-shrink-0">
+                <a href="../index.html" class="block w-32 md:w-44 lg:w-56">
+                    <img src="../img/logo.png" alt="CLUB YATA Logo" class="w-full h-auto">
+                </a>
+            </div>
+
+            <!-- Column 2: Info (営業時間, 住所) -->
+            <div class="flex-1 max-w-[320px]">
+                <div class="mb-4">
+                    <p>営業時間</p>
+                    <p>19:00〜00:00 / 定休日：不定休</p>
+                </div>
+                <div>
+                    <p>住所</p>
+                    <p>岡山県岡山市北区本町8-16 本町プラザ2F</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col space-y-2 uppercase">
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Terms of Service</a>
+            </div>
+
+            <!-- Column 4: Phone & Copyright -->
+            <div class="flex flex-col items-center md:items-end justify-between self-stretch">
+                <div class="mb-4 md:mb-0 text-center md:text-right">
+                    <p class="uppercase text-[9px] mb-1">Telephone :</p>
+                    <p class="font-serif text-sm md:text-base tracking-widest whitespace-nowrap">
+                        <a href="tel:0878227567" class="hover:text-[#d4af37] transition-colors">087-822-7567</a>
+                    </p>
+                </div>
+                <div class="mt-auto pt-6 text-[9px] text-[#e0e0e0]/50 uppercase font-serif">
+                    © 2024 CLUB YATA . Privacy & Policy
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
+

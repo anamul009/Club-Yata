@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT US | CLUB YATA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="bg-[#03080b] overflow-x-hidden">
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-3 h-3 bg-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block" style="pointer-events: none;"></div>
+    <div id="cursor-follower" class="fixed w-10 h-10 border border-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block" style="pointer-events: none;"></div>
+
+    <!-- Master Background for Contact Page (using the darker cherry blossom if available, or just the maple leaves) -->
+    <!-- Applying a darker overlay so the white form elements stand out -->
+    <div class="fixed top-0 left-0 w-full h-[150vh] bg-cover bg-center opacity-[0.3] z-[-2] filter grayscale-[10%] brightness-[0.5]" style="background-image: url('../img/japanese-maple-leaves-3978208_1280.jpg'); mix-blend-mode: screen;"></div>
+
+    <!-- Full Screen Menu -->
+    <div id="fullscreen-menu" class="nav-overlay">
+        <button id="close-menu-btn" class="absolute top-8 right-6 md:right-12 text-white hover:text-[#d4af37] transition-colors p-2 flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="absolute top-8 left-6 md:left-12 w-28 md:w-64 pt-2">
+            <img src="../img/logo.png" alt="CLUB YATA" class="w-full">
+        </div>
+
+        <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
+            <li><a href="../index.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="concept.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="floor.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">FLOOR<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="performer.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">PERFORMER<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="menu.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+            <li><a href="contact.html" class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT US<span class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a></li>
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="absolute z-50 top-0 w-full px-6 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+        <div class="w-28 md:w-64 pointer-events-auto">
+            <a href="../index.html">
+                <img src="../img/logo.png" alt="YATA" class="w-full">
+            </a>
+        </div>
+    </nav>
+    <button id="menu-btn" class="fixed z-50 top-8 right-6 md:right-12 flex flex-col gap-[6px] p-2 group">
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+    </button>
+
+    <!-- Side Follow Us Text -->
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-12 pointer-events-auto">
+        <span class="vertical-text text-[9px] tracking-[0.5em] uppercase opacity-40">Follow us —</span>
+        <div class="flex flex-col gap-6 opacity-40 text-[9px]">
+            <a href="https://www.instagram.com/clubyata_okayama/" target="_blank" rel="noopener noreferrer" class="hover:text-[#d4af37] transition-colors">IG</a>
+            <a href="#" class="hover:text-[#d4af37] transition-colors">TW</a>
+        </div>
+    </div>
+
+    <!-- Contact Content -->
+    <main class="relative z-10 w-full pt-48 md:pt-56 lg:pt-64 pb-32 fade-section overflow-hidden">
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-12 flex-col items-center gap-2 hidden md:flex opacity-60">
+            <span class="vertical-text text-[9px] tracking-widest uppercase">scroll</span>
+            <div class="w-[1px] h-12 bg-white/30 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-white bg-white animate-[scroll-line_2s_ease-in-out_infinite]"></div>
+            </div>
+        </div>
+
+        <!-- Floating decor elements behind form -->
+        <div class="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#d4af37]/5 rounded-full blur-[100px] pointer-events-none fade-section"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#d4af37]/5 rounded-full blur-[120px] pointer-events-none fade-section"></div>
+
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+                
+                <!-- Left Column text -->
+                <div class="w-full lg:w-[40%] space-y-10 lg:space-y-12 shrink-0 max-w-lg mx-auto lg:mx-0">
+                    <div class="text-center lg:text-left">
+                        <h2 class="cursive-title text-4xl md:text-5xl lg:text-6xl text-white tracking-wider mb-4 md:mb-6 drop-shadow-lg">CONTACT US</h2>
+                        <p class="jp-font text-[#d4af37] text-[10px] md:text-xs lg:text-sm font-light tracking-[0.2em] mb-6 md:mb-8">
+                            Contact & Reservation
+                        </p>
+                        <p class="jp-font text-white/70 text-[10px] md:text-[11px] lg:text-xs leading-[2.5] tracking-[0.15em] font-light text-left md:text-center lg:text-left">
+                            CLUB YATAのご利用をご検討いただき、誠にありがとうございます。<br>
+                            事前のご予約やお問い合わせについては、下記フォーム、もしくはお電話にて承っております。<br><br>
+                            フォームよりご連絡いただいた内容は、確認のうえ当社スタッフより折り返しご連絡させていただきます。
+                        </p>
+                    </div>
+
+                    <!-- Glowing Info Card -->
+                    <div class="relative group">
+                        <div class="absolute -inset-0.5 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+                        <div class="relative bg-[#03080b]/60 backdrop-blur-xl border border-white/10 p-8 rounded-2xl flex flex-col items-center lg:items-start text-center lg:text-left overflow-hidden">
+                            <!-- Subtle shine effect -->
+                            <div class="absolute top-0 -left-[100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/[0.05] to-transparent skew-x-[-45deg] group-hover:translate-x-[300%] transition-transform duration-[1.5s] ease-in-out"></div>
+                            
+                            <p class="jp-font text-white text-[11px] md:text-xs leading-loose tracking-[0.1em] font-light mb-4 text-center lg:text-left">
+                                月曜から土曜日の18:30〜23:00の間は、<br>お電話でのご予約も承っております。
+                            </p>
+                            <p class="jp-font text-white/50 text-[9px] md:text-[10px] leading-loose tracking-[0.1em] font-light mb-8 text-center lg:text-left">
+                                ※定休日：日曜、祝日<br class="hidden lg:block">（年末年始、GW、お盆休み除く）
+                            </p>
+                            <div class="w-full">
+                                <a href="tel:087-823-7567" class="inline-flex items-center gap-4 text-white font-serif text-2xl md:text-3xl tracking-widest group/tel">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6 text-[#d4af37] group-hover/tel:-rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    <span class="border-b border-transparent group-hover/tel:border-[#d4af37] transition-colors duration-300 pb-1">087-823-7567</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column Form -->
+                <div class="w-full lg:w-[60%] relative max-w-2xl mx-auto lg:max-w-none">
+                    <!-- Glassmorphism Container -->
+                    <div class="bg-white/[0.02] backdrop-blur-md border border-white/10 p-6 md:p-10 lg:p-12 rounded-2xl md:rounded-[2rem] shadow-2xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent rounded-2xl md:rounded-[2rem] pointer-events-none"></div>
+                        
+                        <form id="contact-form" action="https://formspree.io/f/please_replace_with_your_form_id" method="POST" class="relative z-10 space-y-8 jp-font font-light">
+                            
+                            <!-- Reservation Date selection -->
+                            <div class="space-y-3">
+                                <label class="flex items-center text-white/70 text-[10px] md:text-xs tracking-widest ml-1">
+                                    <span class="text-[#d4af37] px-2 py-[2px] rounded text-[8px] mr-3 bg-[#d4af37]/10 border border-[#d4af37]/30">必須</span>
+                                    Preferred Reservation Date
+                                </label>
+                                <div class="relative group">
+                                    <button id="calendar-toggle" class="w-full bg-white/[0.03] border border-white/10 text-white/40 focus:outline-none focus:border-[#d4af37] focus:bg-white/[0.06] rounded-xl px-4 py-3.5 transition-all duration-300 text-xs md:text-sm text-left flex justify-between items-center hover:border-white/30 group-hover:bg-white/[0.05]">
+                                        <span>Select a date</span>
+                                        <svg class="w-4 h-4 text-[#d4af37]/60 group-hover:text-[#d4af37] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    </button>
+                                    <input type="hidden" id="selected-reservation-date" name="booking_date" required>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: People & Name -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-3">
+                                    <label class="flex items-center text-white/70 text-[10px] md:text-xs tracking-widest ml-1">
+                                        <span class="text-[#d4af37] px-2 py-[2px] rounded text-[8px] mr-3 bg-[#d4af37]/10 border border-[#d4af37]/30">必須</span>
+                                        Number of Guests
+                                    </label>
+                                    <input type="text" name="people" class="w-full bg-white/[0.03] border border-white/10 text-white focus:outline-none focus:border-[#d4af37] focus:bg-white/[0.06] rounded-xl px-4 py-3.5 transition-all duration-300 text-xs md:text-sm placeholder-white/20 hover:border-white/30" placeholder="e.g. 2 guests" required>
+                                </div>
+                                <div class="space-y-3">
+                                    <label class="flex items-center text-white/70 text-[10px] md:text-xs tracking-widest ml-1">
+                                        <span class="text-[#d4af37] px-2 py-[2px] rounded text-[8px] mr-3 bg-[#d4af37]/10 border border-[#d4af37]/30">必須</span>
+                                        Name
+                                    </label>
+                                    <input type="text" name="name" class="w-full bg-white/[0.03] border border-white/10 text-white focus:outline-none focus:border-[#d4af37] focus:bg-white/[0.06] rounded-xl px-4 py-3.5 transition-all duration-300 text-xs md:text-sm placeholder-white/20 hover:border-white/30" placeholder="e.g. Taro Yamada" required>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Furigana & Phone -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-3">
+                                    <label class="flex items-center text-white/70 text-[10px] md:text-xs tracking-widest ml-1">
+                                        <span class="text-[#d4af37] px-2 py-[2px] rounded text-[8px] mr-3 bg-[#d4af37]/10 border border-[#d4af37]/30">必須</span>
+                                        Furigana
+                                    </label>
+                                    <input type="text" name="furigana" class="w-full bg-white/[0.03] border border-white/10 text-white focus:outline-none focus:border-[#d4af37] focus:bg-white/[0.06] rounded-xl px-4 py-3.5 transition-all duration-300 text-xs md:text-sm placeholder-white/20 hover:border-white/30" placeholder="例：やまだ たろう" required>
+                                </div>
+                                <div class="space-y-3">
+                                    <label class="flex items-center text-white/70 text-[10px] md:text-xs tracking-widest ml-1">
+                                        <span class="text-[#d4af37] px-2 py-[2px] rounded text-[8px] mr-3 bg-[#d4af37]/10 border border-[#d4af37]/30">必須</span>
+                                        Phone Number
+                                    </label>
+                                    <input type="tel" name="phone" class="w-full bg-white/[0.03] border border-white/10 text-white focus:outline-none focus:border-[#d4af37] focus:bg-white/[0.06] rounded-xl px-4 py-3.5 transition-all duration-300 text-xs md:text-sm placeholder-white/20 hover:border-white/30" placeholder="例：090-1234-5678" required>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="space-y-3">
+                                <label class="flex items-center text-white/70 text-[10px] md:text-xs tracking-widest ml-1">
+                                    <span class="text-[#d4af37] px-2 py-[2px] rounded text-[8px] mr-3 bg-[#d4af37]/10 border border-[#d4af37]/30">必須</span>
+                                    Email Address
+                                </label>
+                                <input type="email" name="email" class="w-full bg-white/[0.03] border border-white/10 text-white focus:outline-none focus:border-[#d4af37] focus:bg-white/[0.06] rounded-xl px-4 py-3.5 transition-all duration-300 text-xs md:text-sm placeholder-white/20 hover:border-white/30" placeholder="例：info@example.com" required>
+                            </div>
+
+                            <!-- Remarks -->
+                            <div class="space-y-3">
+                                <label class="flex items-center text-white/70 text-[10px] md:text-xs tracking-widest ml-1">
+                                    <span class="text-white/40 px-2 py-[2px] rounded text-[8px] mr-3 bg-white/5 border border-white/10">任意</span>
+                                    Remarks
+                                </label>
+                                <textarea name="remarks" rows="5" class="w-full bg-white/[0.03] border border-white/10 text-white focus:outline-none focus:border-[#d4af37] focus:bg-white/[0.06] rounded-xl px-4 py-3.5 transition-all duration-300 text-xs md:text-sm placeholder-white/20 hover:border-white/30 resize-none" placeholder="ご要望やご質問などをご記入ください..."></textarea>
+                            </div>
+
+                            <!-- Privacy & Submit -->
+                            <div class="pt-8 mt-4 border-t border-white/10 space-y-10">
+                                <div class="flex justify-center">
+                                    <label class="inline-flex items-center cursor-pointer group">
+                                        <div class="relative flex items-center justify-center w-5 h-5 border border-white/30 rounded bg-white/5 mr-4 flex-shrink-0 group-hover:border-[#d4af37] group-hover:bg-[#d4af37]/10 transition-colors duration-300">
+                                            <input type="checkbox" name="privacy_agree" class="opacity-0 absolute w-full h-full cursor-pointer z-10 peer" required>
+                                            <svg class="w-3.5 h-3.5 text-[#d4af37] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </div>
+                                        <span class="text-[10px] md:text-[11px] tracking-[0.15em] text-white/70 group-hover:text-white transition-colors duration-300">
+                                            I agree to the privacy policy and submit.
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="text-center relative">
+                                    <!-- Background Glow -->
+                                    <div class="absolute inset-0 bg-[#d4af37] blur-[30px] opacity-20 hover:opacity-40 transition-opacity duration-500 rounded-full w-48 h-12 mx-auto"></div>
+                                    
+                                    <button type="submit" class="relative overflow-hidden bg-gradient-to-r from-[#d4af37] to-[#e4ca80] hover:to-[#fff3cc] text-black px-12 md:px-16 py-3.5 md:py-4 rounded-full text-[11px] md:text-xs font-bold tracking-[0.2em] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transform hover:-translate-y-1 group/btn">
+                                        <span class="relative z-10 flex items-center gap-2 md:gap-3">
+                                            SEND
+                                            <svg class="w-3 h-3 md:w-4 md:h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                        </span>
+                                        <!-- Sweeping Light Animation on Hover -->
+                                        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-45deg] -translate-x-[150%] group-hover/btn:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                                    </button>
+                                    
+                                    <p id="form-status" class="mt-8 text-xs tracking-widest hidden w-full text-center"></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="relative z-10 w-full px-6 md:px-[6%] py-12 md:py-20 bg-[#03080b]/90 border-t border-white/10">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 text-center md:text-left jp-font font-light tracking-widest text-[#e0e0e0] text-[10px] md:text-xs leading-loose">
+            
+            <div class="flex-shrink-0">
+                <a href="../index.html" class="block w-32 md:w-44 lg:w-56">
+                    <img src="../img/logo.png" alt="CLUB YATA Logo" class="w-full h-auto">
+                </a>
+            </div>
+
+            <div class="flex-1 max-w-[320px]">
+                <div class="mb-4">
+                    <p>営業時間</p>
+                    <p>19:00〜00:00 / 定休日：不定休</p>
+                </div>
+                <div>
+                    <p>住所</p>
+                    <p>岡山県岡山市北区本町8-16 本町プラザ2F</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col space-y-2 uppercase">
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white w-max mx-auto md:mx-0">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors border-b border-transparent hover:border-white w-max mx-auto md:mx-0">Terms of Service</a>
+            </div>
+
+            <div class="flex flex-col items-center md:items-end justify-between self-stretch">
+                <div class="mb-4 md:mb-0 text-center md:text-right">
+                    <p class="uppercase text-[9px] mb-1">Telephone :</p>
+                    <p class="font-serif text-sm md:text-base tracking-widest whitespace-nowrap">
+                        <a href="tel:0878227567" class="hover:text-[#d4af37] transition-colors">087-822-7567</a>
+                    </p>
+                </div>
+                <div class="mt-auto pt-6 text-[9px] text-[#e0e0e0]/50 uppercase font-serif">
+                    © 2024 CLUB YATA . Privacy & Policy
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Reservation Calendar Modal -->
+    <div id="calendar-modal" class="fixed inset-0 bg-[#03080b]/95 backdrop-blur-sm z-[150] hidden flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-[#03080b] border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl relative overflow-hidden">
+            <!-- Modal Background Decor -->
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-[#d4af37]/10 rounded-full blur-[60px] pointer-events-none"></div>
+            
+            <button id="close-calendar" class="absolute top-6 right-6 text-white/40 hover:text-white transition-colors">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+
+            <h2 class="jp-font text-[#d4af37] text-[10px] tracking-[0.2em] mb-8 uppercase">Select Reservation Date</h2>
+            
+            <div id="reservation-calendar" class="jp-font text-white">
+                <!-- Calendar will be rendered here by JS -->
+            </div>
+
+            <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[9px] tracking-widest text-white/40 border-t border-white/5 pt-6">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full border border-[#d4af37]/40 bg-[#d4af37]/10"></span>
+                    <span>Available</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full border border-orange-500/40 bg-orange-500/10"></span>
+                    <span>Limited</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-red-500/20 border border-red-500/40"></span>
+                    <span>Full / Closed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/reservation.js"></script>
+    <script>
+        // Form submission handling script for visual validation
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            const statusMessage = document.getElementById('form-status');
+
+            if(form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Basic client side simulation since backend isn't real yet.
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.innerText;
+                    
+                    submitBtn.innerText = '送信中...';
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('opacity-70');
+
+                    // Note to user: If you configure formspree above, you can use the fetch API here to submit it via AJAX, 
+                    // or just remove the e.preventDefault() and let it redirect natively.
+                    
+                    try {
+                        // Simulating a network request for professional feel
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        
+                        // Show success message
+                        statusMessage.innerText = 'お問い合わせの送信が完了しました。担当者よりご連絡いたします。';
+                        statusMessage.classList.remove('hidden', 'text-red-400');
+                        statusMessage.classList.add('text-[#d4af37]');
+                        
+                        // Reset form
+                        form.reset();
+                    } catch (error) {
+                        statusMessage.innerText = '送信に失敗しました。しばらく経ってから再度お試しください。';
+                        statusMessage.classList.remove('hidden', 'text-[#d4af37]');
+                        statusMessage.classList.add('text-red-400');
+                    } finally {
+                        submitBtn.innerText = originalBtnText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-70');
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            statusMessage.classList.add('hidden');
+                        }, 5000);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
+

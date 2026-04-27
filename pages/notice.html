@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTICE | CLUB YATA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="bg-[#03080b]">
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-3 h-3 bg-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
+        style="pointer-events: none;"></div>
+    <div id="cursor-follower"
+        class="fixed w-10 h-10 border border-[#d4af37] rounded-full mix-blend-difference z-[200] hidden md:block"
+        style="pointer-events: none;"></div>
+
+    <!-- Master Background -->
+    <div class="fixed top-0 left-0 w-full h-full bg-cover bg-center opacity-20 z-[-1] filter grayscale brightness-[0.4]"
+        style="background-image: url('../img/hero-bg.jpg');"></div>
+
+    <!-- Full Screen Menu -->
+    <div id="fullscreen-menu" class="nav-overlay">
+        <button id="close-menu-btn"
+            class="absolute top-8 right-8 md:right-12 text-white hover:text-[#d4af37] transition-colors p-2 flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="absolute top-8 left-8 md:left-12 w-28 md:w-64 pt-2">
+            <img src="../img/logo.png" alt="CLUB YATA" class="w-full">
+        </div>
+
+        <ul class="text-right space-y-8 md:space-y-12 text-lg md:text-2xl tracking-[0.3em] font-light mt-12 md:mt-0">
+            <li><a href="../index.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">HOME<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="concept.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONCEPT<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="floor.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">FLOOR<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="performer.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">PERFORMER<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="menu.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">MENU<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+            <li><a href="contact.html"
+                    class="menu-link hover:text-[#d4af37] transition-colors inline-block relative overflow-hidden group">CONTACT US<span
+                        class="absolute bottom-0 left-0 w-full h-px bg-[#d4af37] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500"></span></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="absolute z-50 top-0 w-full px-8 md:px-12 py-8 flex justify-between items-start pointer-events-none">
+        <div class="w-28 md:w-64 pointer-events-auto">
+            <a href="../index.html">
+                <img src="../img/logo.png" alt="YATA" class="w-full">
+            </a>
+        </div>
+    </nav>
+    <button id="menu-btn" class="fixed z-50 top-8 right-8 md:right-12 flex flex-col gap-[6px] p-2 group">
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+        <span class="w-8 h-[1px] bg-white group-hover:bg-[#d4af37] transition-colors"></span>
+    </button>
+
+    <!-- Main Content -->
+    <main class="relative pt-48 pb-32 px-6">
+        <div class="max-w-[1000px] mx-auto space-y-16 fade-section">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-serif tracking-[0.3em] uppercase mb-8 text-white">NOTICE</h1>
+                <p class="jp-font text-white/50 text-xs md:text-sm tracking-widest font-light">
+                    イベント・重要なお知らせ
+                </p>
+            </div>
+
+            <div class="space-y-6 border-t border-white/10 pt-12">
+                <!-- Notice Item 1 -->
+                <a href="notices/notice-20241201.html"
+                    class="flex flex-col md:flex-row items-baseline gap-4 md:gap-12 pb-8 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                    <span class="font-serif text-sm tracking-widest w-32 shrink-0">2024.12.01</span>
+                    <span
+                        class="jp-font text-lg tracking-widest font-extralight group-hover:translate-x-2 transition-transform">年末年始の営業について</span>
+                    <span class="ml-auto text-[10px] hidden md:block">→</span>
+                </a>
+                <!-- Notice Item 2 -->
+                <a href="notices/notice-20241115.html"
+                    class="flex flex-col md:flex-row items-baseline gap-4 md:gap-12 pb-8 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                    <span class="font-serif text-sm tracking-widest w-32 shrink-0">2024.11.15</span>
+                    <span
+                        class="jp-font text-lg tracking-widest font-extralight group-hover:translate-x-2 transition-transform">12月の演奏スケジュールを更新しました</span>
+                    <span class="ml-auto text-[10px] hidden md:block">→</span>
+                </a>
+                <!-- Notice Item 3 -->
+                <a href="notices/notice-20241020.html"
+                    class="flex flex-col md:flex-row items-baseline gap-4 md:gap-12 pb-8 border-b border-white/10 hover:text-[#d4af37] transition-colors group">
+                    <span class="font-serif text-sm tracking-widest w-32 shrink-0">2024.10.20</span>
+                    <span
+                        class="jp-font text-lg tracking-widest font-extralight group-hover:translate-x-2 transition-transform">秋の限定・響ブレンドカクテル開始</span>
+                    <span class="ml-auto text-[10px] hidden md:block">→</span>
+                </a>
+                <!-- Optional: Future items placeholder -->
+                <div class="py-12 text-center opacity-20 jp-font text-xs tracking-widest">
+                    --- ARCHIVE ---
+                </div>
+            </div>
+
+            <div class="pt-12 text-center">
+                <a href="../index.html" class="inline-flex items-center gap-4 text-white text-[10px] tracking-[0.4em] uppercase hover:text-[#d4af37] transition-colors group">
+                    <span class="w-8 h-[1px] bg-white/50 group-hover:bg-[#d4af37] group-hover:w-12 transition-all"></span> BACK TO HOME
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Map & Footer -->
+    <footer class="relative z-10 w-full px-6 md:px-[6%] py-12 md:py-20 bg-[#03080b]/90 border-t border-white/10">
+        <div
+            class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 text-center md:text-left jp-font font-light tracking-widest text-[#e0e0e0] text-[10px] md:text-xs leading-loose">
+            <div class="flex-shrink-0">
+                <a href="../index.html" class="block w-32 md:w-44 lg:w-56">
+                    <img src="../img/logo.png" alt="CLUB YATA Logo" class="w-full h-auto">
+                </a>
+            </div>
+            <div class="flex-1 max-w-[320px]">
+                <div class="mb-4">
+                    <p>営業時間</p>
+                    <p>19:00〜00:00 / 定休日：不定休</p>
+                </div>
+                <div>
+                    <p>住所</p>
+                    <p>岡山県岡山市北区本町8-16 本町プラザ2F</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center md:items-end justify-between self-stretch">
+                <div class="mb-4 md:mb-0 text-center md:text-right">
+                    <p class="uppercase text-[9px] mb-1">Telephone :</p>
+                    <p class="font-serif text-sm md:text-base tracking-widest whitespace-nowrap">
+                        <a href="tel:0878227567" class="hover:text-[#d4af37] transition-colors">087-822-7567</a>
+                    </p>
+                </div>
+                <div class="mt-auto pt-6 text-[9px] text-[#e0e0e0]/50 uppercase font-serif">
+                    © 2024 CLUB YATA . Privacy & Policy
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
